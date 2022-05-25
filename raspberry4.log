@@ -1,0 +1,215 @@
+pi@raspberrypi:~ $ docker
+bash: docker: コマンドが見つかりません
+pi@raspberrypi:~ $ apt-get update
+パッケージリストを読み込んでいます... 完了
+E: ロックファイル /var/lib/apt/lists/lock をオープンできません - open (13: 許可がありません)
+E: ディレクトリ /var/lib/apt/lists/ をロックできません
+W: ファイル /var/cache/apt/pkgcache.bin の削除中に問題が発生しました - RemoveCaches (13: 許可がありません)
+W: ファイル /var/cache/apt/srcpkgcache.bin の削除中に問題が発生しました - RemoveCaches (13: 許可がありません)
+pi@raspberrypi:~ $ su
+パスワード:
+su: 認証失敗
+pi@raspberrypi:~ $ sudo passwd root
+新しいパスワード:
+新しいパスワードを再入力してください:
+パスワードが一致しません。
+パスワード: 認証トークン操作エラー
+passwd: パスワードは変更されませんでした
+pi@raspberrypi:~ $ sudo passwd root
+新しいパスワード:
+新しいパスワードを再入力してください:
+パスワードが一致しません。
+パスワード: 認証トークン操作エラー
+passwd: パスワードは変更されませんでした
+pi@raspberrypi:~ $ sudo passwd root
+新しいパスワード:
+新しいパスワードを再入力してください:
+passwd: パスワードは正しく更新されました
+pi@raspberrypi:~ $ su
+パスワード:
+root@raspberrypi:/home/pi# apt-get update
+エラー:3 https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease
+  401  Unauthorized [IP: 54.241.1.205 443]
+取得:4 http://archive.raspberrypi.org/debian buster InRelease [32.6 kB]        
+取得:6 http://raspbian.raspberrypi.org/raspbian buster InRelease [15.0 kB]     
+ヒット:2 https://download.mono-project.com/repo/debian stable-raspbianjessie InRelease
+取得:1 https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease [23.3 kB]
+ヒット:5 https://download.mono-project.com/repo/debian wheezy InRelease        
+エラー:1 https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease
+  以下の署名が無効です: EXPKEYSIG 3F01618A51312F3F GitLab B.V. (package repository signing key) <packages@gitlab.com>
+パッケージリストを読み込んでいます... 完了
+E: https://packagecloud.io/headmelted/codebuilds/debian/dists/stretch/InRelease の取得に失敗しました  401  Unauthorized [IP: 54.241.1.205 443]
+E: リポジトリ https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease はもう署名されていません。
+N: このようなリポジトリから更新を安全に行うことができないので、デフォルトでは更新が無効になっています。
+N: リポジトリの作成とユーザ設定の詳細は、apt-secure(8) man ページを参照してください。
+E: Repository 'http://raspbian.raspberrypi.org/raspbian buster InRelease' changed its 'Suite' value from 'stable' to 'oldstable'
+N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
+E: Repository 'http://archive.raspberrypi.org/debian buster InRelease' changed its 'Suite' value from 'testing' to 'oldstable'
+N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
+W: 署名照合中にエラーが発生しました。リポジトリは更新されず、過去のインデックスファイルが使われます。GPG エラー: https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease: 以下の署名が無効です: EXPKEYSIG 3F01618A51312F3F GitLab B.V. (package repository signing key) <packages@gitlab.com>
+root@raspberrypi:/home/pi# apt-get docker
+E: 不正な操作 docker
+root@raspberrypi:/home/pi# apt-get docker.io
+E: 不正な操作 docker.io
+root@raspberrypi:/home/pi# apt-get remove docker docker-engine docker.io containerd runc
+パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています                
+状態情報を読み取っています... 完了
+パッケージ 'docker-engine' はインストールされていないため削除もされません
+E: パッケージ containerd が見つかりません
+root@raspberrypi:/home/pi# curl -fsSL https://get.docker.com -o get-docker.sh
+root@raspberrypi:/home/pi# ls
+2020-09-25-094542_1920x1080_scrot.png  Documents
+2020-09-25-094546_1920x1080_scrot.png  Downloads
+2020-09-25-094554_1920x1080_scrot.png  Mail
+2021-01-07-145337_1920x1080_scrot.png  Music
+2021-01-07-145342_1920x1080_scrot.png  Pictures
+2021-01-07-145347_1920x1080_scrot.png  Public
+2021-06-25-161538_3840x1080_scrot.png  Templates
+2021-07-21-145126_3840x1080_scrot.png  Videos
+2021-07-21-161902_3840x1080_scrot.png  get-docker.sh
+2021-07-21-162139_3840x1080_scrot.png  mu_code
+Bookshelf			       test
+Desktop				       test.png
+root@raspberrypi:/home/pi# sh get-docker.sh 
+# Executing docker install script, commit: 614d05e0e669a0577500d055677bb6f71e822356
++ sh -c apt-get update -qq >/dev/null
+E: https://packagecloud.io/headmelted/codebuilds/debian/dists/stretch/InRelease の取得に失敗しました  401  Unauthorized [IP: 50.18.207.89 443]
+E: リポジトリ https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease はもう署名されていません。
+E: Repository 'http://archive.raspberrypi.org/debian buster InRelease' changed its 'Suite' value from 'testing' to 'oldstable'
+E: Repository 'http://raspbian.raspberrypi.org/raspbian buster InRelease' changed its 'Suite' value from 'stable' to 'oldstable'
+W: 署名照合中にエラーが発生しました。リポジトリは更新されず、過去のインデックスファイルが使われます。GPG エラー: https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease: 以下の署名が無効です: EXPKEYSIG 3F01618A51312F3F GitLab B.V. (package repository signing key) <packages@gitlab.com>
+root@raspberrypi:/home/pi# apt-get update
+エラー:3 https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease                                                                                                      
+  401  Unauthorized [IP: 54.241.1.205 443]
+取得:5 http://archive.raspberrypi.org/debian buster InRelease [32.6 kB]                                                                                                              
+ヒット:2 https://download.mono-project.com/repo/debian stable-raspbianjessie InRelease                                                                          
+ヒット:4 https://download.mono-project.com/repo/debian wheezy InRelease                                                      
+取得:1 https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease [23.3 kB]         
+取得:6 http://raspbian.raspberrypi.org/raspbian buster InRelease [15.0 kB]                              
+エラー:1 https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease
+  以下の署名が無効です: EXPKEYSIG 3F01618A51312F3F GitLab B.V. (package repository signing key) <packages@gitlab.com>
+パッケージリストを読み込んでいます... 完了
+E: https://packagecloud.io/headmelted/codebuilds/debian/dists/stretch/InRelease の取得に失敗しました  401  Unauthorized [IP: 54.241.1.205 443]
+E: リポジトリ https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease はもう署名されていません。
+N: このようなリポジトリから更新を安全に行うことができないので、デフォルトでは更新が無効になっています。
+N: リポジトリの作成とユーザ設定の詳細は、apt-secure(8) man ページを参照してください。
+E: Repository 'http://archive.raspberrypi.org/debian buster InRelease' changed its 'Suite' value from 'testing' to 'oldstable'
+N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
+W: 署名照合中にエラーが発生しました。リポジトリは更新されず、過去のインデックスファイルが使われます。GPG エラー: https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease: 以下の署名が無効です: EXPKEYSIG 3F01618A51312F3F GitLab B.V. (package repository signing key) <packages@gitlab.com>
+E: Repository 'http://raspbian.raspberrypi.org/raspbian buster InRelease' changed its 'Suite' value from 'stable' to 'oldstable'
+N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
+root@raspberrypi:/home/pi# sh get-docker.sh 
+# Executing docker install script, commit: 614d05e0e669a0577500d055677bb6f71e822356
++ sh -c apt-get update -qq >/dev/null
+E: https://packagecloud.io/headmelted/codebuilds/debian/dists/stretch/InRelease の取得に失敗しました  401  Unauthorized [IP: 50.18.207.89 443]
+E: リポジトリ https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease はもう署名されていません。
+E: Repository 'http://raspbian.raspberrypi.org/raspbian buster InRelease' changed its 'Suite' value from 'stable' to 'oldstable'
+E: Repository 'http://archive.raspberrypi.org/debian buster InRelease' changed its 'Suite' value from 'testing' to 'oldstable'
+W: 署名照合中にエラーが発生しました。リポジトリは更新されず、過去のインデックスファイルが使われます。GPG エラー: https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease: 以下の署名が無効です: EXPKEYSIG 3F01618A51312F3F GitLab B.V. (package repository signing key) <packages@gitlab.com>
+root@raspberrypi:/home/pi# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 
+Executing: /tmp/apt-key-gpghome.rc6H0YqSit/gpg.1.sh --keyserver keyserver.ubuntu.com --recv-keys
+root@raspberrypi:/home/pi# sh get-docker.sh 
+# Executing docker install script, commit: 614d05e0e669a0577500d055677bb6f71e822356
++ sh -c apt-get update -qq >/dev/null
+E: https://packagecloud.io/headmelted/codebuilds/debian/dists/stretch/InRelease の取得に失敗しました  401  Unauthorized [IP: 50.18.207.89 443]
+E: リポジトリ https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease はもう署名されていません。
+E: Repository 'http://raspbian.raspberrypi.org/raspbian buster InRelease' changed its 'Suite' value from 'stable' to 'oldstable'
+E: Repository 'http://archive.raspberrypi.org/debian buster InRelease' changed its 'Suite' value from 'testing' to 'oldstable'
+W: 署名照合中にエラーが発生しました。リポジトリは更新されず、過去のインデックスファイルが使われます。GPG エラー: https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease: 以下の署名が無効です: EXPKEYSIG 3F01618A51312F3F GitLab B.V. (package repository signing key) <packages@gitlab.com>
+root@raspberrypi:/home/pi# apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6A030B21BA07F4FB
+Executing: /tmp/apt-key-gpghome.CI4VADIR38/gpg.1.sh --keyserver keyserver.ubuntu.com --recv-keys 6A030B21BA07F4FB
+gpg: 鍵6A030B21BA07F4FB: 公開鍵"Google Cloud Packages Automatic Signing Key <gc-team@google.com>"をインポートしました
+gpg:           処理数の合計: 1
+gpg:             インポート: 1
+root@raspberrypi:/home/pi# apt-get update
+エラー:3 https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease                                                                                                                                       
+  401  Unauthorized [IP: 50.18.207.89 443]
+取得:5 http://archive.raspberrypi.org/debian buster InRelease [32.6 kB]                                                                                                                                    
+ヒット:2 https://download.mono-project.com/repo/debian stable-raspbianjessie InRelease                                                                             
+ヒット:4 https://download.mono-project.com/repo/debian wheezy InRelease                                                                                            
+取得:6 http://raspbian.raspberrypi.org/raspbian buster InRelease [15.0 kB]                      
+取得:1 https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease [23.3 kB]          
+エラー:1 https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease
+  以下の署名が無効です: EXPKEYSIG 3F01618A51312F3F GitLab B.V. (package repository signing key) <packages@gitlab.com>
+パッケージリストを読み込んでいます... 完了
+E: https://packagecloud.io/headmelted/codebuilds/debian/dists/stretch/InRelease の取得に失敗しました  401  Unauthorized [IP: 50.18.207.89 443]
+E: リポジトリ https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease はもう署名されていません。
+N: このようなリポジトリから更新を安全に行うことができないので、デフォルトでは更新が無効になっています。
+N: リポジトリの作成とユーザ設定の詳細は、apt-secure(8) man ページを参照してください。
+E: Repository 'http://raspbian.raspberrypi.org/raspbian buster InRelease' changed its 'Suite' value from 'stable' to 'oldstable'
+N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
+E: Repository 'http://archive.raspberrypi.org/debian buster InRelease' changed its 'Suite' value from 'testing' to 'oldstable'
+N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
+W: 署名照合中にエラーが発生しました。リポジトリは更新されず、過去のインデックスファイルが使われます。GPG エラー: https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease: 以下の署名が無効です: EXPKEYSIG 3F01618A51312F3F GitLab B.V. (package repository signing key) <packages@gitlab.com>
+root@raspberrypi:/home/pi# apt-key list
+/etc/apt/trusted.gpg
+--------------------
+pub   rsa2048 2012-04-01 [SC]
+      A0DA 38D0 D76E 8B5D 6388  7281 9165 938D 90FD DD2E
+uid           [  不明  ] Mike Thompson (Raspberry Pi Debian armhf ARMv6+VFP) <mpthompson@gmail.com>
+sub   rsa2048 2012-04-01 [E]
+
+pub   rsa2048 2012-06-17 [SC]
+      CF8A 1AF5 02A2 AA2D 763B  AE7E 82B1 2992 7FA3 303E
+uid           [  不明  ] Raspberry Pi Archive Signing Key
+sub   rsa2048 2012-06-17 [E]
+
+pub   rsa2048 2014-08-04 [SC]
+      3FA7 E032 8081 BFF6 A14D  A29A A6A1 9B38 D3D8 31EF
+uid           [  不明  ] Xamarin Public Jenkins (auto-signing) <releng@xamarin.com>
+sub   rsa2048 2014-08-04 [E]
+
+pub   rsa4096 2020-03-02 [SC] [期限切れ: 2022-03-02]
+      F640 3F65 44A3 8863 DAA0  B6E0 3F01 618A 5131 2F3F
+uid           [期限切れ] GitLab B.V. (package repository signing key) <packages@gitlab.com>
+
+pub   rsa2048 2018-04-01 [SCE] [期限切れ: 2021-03-31]
+      54A6 47F9 048D 5688 D7DA  2ABE 6A03 0B21 BA07 F4FB
+uid           [期限切れ] Google Cloud Packages Automatic Signing Key <gc-team@google.com>
+
+root@raspberrypi:/home/pi# apt-key adv
+Executing: /tmp/apt-key-gpghome.yOnPggskpe/gpg.1.sh
+gpg: *警告*: コマンドが指定されていません。なにを意味しているのか当ててみます ...
+gpg: 開始します。メッセージを打ってください ...
+ 
+f
+^C
+gpg: signal Interrupt caught ... exiting
+root@raspberrypi:/home/pi# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys
+Executing: /tmp/apt-key-gpghome.CYsOEavO09/gpg.1.sh --keyserver keyserver.ubuntu.com --recv-keys
+root@raspberrypi:/home/pi# curl https://build.opensuse.org/projects/home:manuelschneid3r/public_key | sudo apt-key add -
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1117    0  1117    0     0    774      0 --:--:--  0:00:01 --:--:--   774
+OK
+root@raspberrypi:/home/pi# curl https://build.opensuse.org/projects/home:manuelschneid3r/public_key | sudo apt-key add -^C
+root@raspberrypi:/home/pi# apt-key add
+^C
+gpg: signal Interrupt caught ... exiting
+root@raspberrypi:/home/pi# apt-get update
+エラー:3 https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease                                                                                                                                      
+  401  Unauthorized [IP: 50.18.207.89 443]
+ヒット:2 https://download.mono-project.com/repo/debian stable-raspbianjessie InRelease                                                                                                                                             
+取得:5 http://archive.raspberrypi.org/debian buster InRelease [32.6 kB]                                                   
+ヒット:4 https://download.mono-project.com/repo/debian wheezy InRelease                             
+取得:6 http://raspbian.raspberrypi.org/raspbian buster InRelease [15.0 kB]                      
+取得:1 https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease [23.3 kB]     
+エラー:1 https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease
+  以下の署名が無効です: EXPKEYSIG 3F01618A51312F3F GitLab B.V. (package repository signing key) <packages@gitlab.com>
+パッケージリストを読み込んでいます... 完了
+E: https://packagecloud.io/headmelted/codebuilds/debian/dists/stretch/InRelease の取得に失敗しました  401  Unauthorized [IP: 50.18.207.89 443]
+E: リポジトリ https://packagecloud.io/headmelted/codebuilds/debian stretch InRelease はもう署名されていません。
+N: このようなリポジトリから更新を安全に行うことができないので、デフォルトでは更新が無効になっています。
+N: リポジトリの作成とユーザ設定の詳細は、apt-secure(8) man ページを参照してください。
+E: Repository 'http://raspbian.raspberrypi.org/raspbian buster InRelease' changed its 'Suite' value from 'stable' to 'oldstable'
+N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
+E: Repository 'http://archive.raspberrypi.org/debian buster InRelease' changed its 'Suite' value from 'testing' to 'oldstable'
+N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
+W: 署名照合中にエラーが発生しました。リポジトリは更新されず、過去のインデックスファイルが使われます。GPG エラー: https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian buster InRelease: 以下の署名が無効です: EXPKEYSIG 3F01618A51312F3F GitLab B.V. (package repository signing key) <packages@gitlab.com>
+root@raspberrypi:/home/pi# curl https://packages.gitlab.com/gitlab/raspberry-pi2/raspbian | sudo apt-key add -
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1351  100  1351    0     0   5899      0 --:--:-- --:--:-- --:--:--  5899
+gpg: 有効なOpenPGPデータが見つかりません。
+root@raspberrypi:/home/pi# 
