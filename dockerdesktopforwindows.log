@@ -1,0 +1,70 @@
+PS C:\Windows\system32> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\Windows\system32> docker version
+Client:
+ Cloud integration: v1.0.24
+ Version:           20.10.14
+ API version:       1.41
+ Go version:        go1.16.15
+ Git commit:        a224086
+ Built:             Thu Mar 24 01:53:11 2022
+ OS/Arch:           windows/amd64
+ Context:           default
+ Experimental:      true
+
+Server: Docker Desktop 4.8.2 (79419)
+ Engine:
+  Version:          20.10.14
+  API version:      1.41 (minimum version 1.12)
+  Go version:       go1.16.15
+  Git commit:       87a90dc
+  Built:            Thu Mar 24 01:46:14 2022
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.5.11
+  GitCommit:        3df54a852345ae127d1fa3092b95168e4a88e2f8
+ runc:
+  Version:          1.0.3
+  GitCommit:        v1.0.3-0-gf46b6ba
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+PS C:\Windows\system32> cd C:\DockerTest
+PS C:\DockerTest> ls
+
+
+    ディレクトリ: C:\DockerTest
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2022/05/25     17:36     1331691520 ubuntu-20.04.4-live-server-amd64.iso
+
+
+PS C:\DockerTest> tar -cvf ubuntu-20.04.4-live-server-amd64.iso.tar .\ubuntu-20.04.4-live-server-amd64.iso
+a ./ubuntu-20.04.4-live-server-amd64.iso
+PS C:\DockerTest> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\DockerTest> docker load -i .\ubuntu-20.04.4-live-server-amd64.iso.tar
+open /var/lib/docker/tmp/docker-import-988949726/repositories: no such file or directory
+PS C:\DockerTest> docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+PS C:\DockerTest> pwd
+
+Path
+----
+C:\DockerTest
+
+
+PS C:\DockerTest> 
+PS C:\DockerTest> docker load -i .\ubuntu-20.04.4-live-server-amd64.iso
+Error processing tar file(exit status 1): archive/tar: invalid tar header
+PS C:\DockerTest> docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+PS C:\DockerTest> docker import .\ubuntu-20.04.4-live-server-amd64.iso.tar
+sha256:7ea4c407b27f002acd5bac28c074d693970b805c6590d9c9c1573df6095290a1
+PS C:\DockerTest> docker images
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+<none>       <none>    7ea4c407b27f   25 seconds ago   1.33GB
+PS C:\DockerTest>
