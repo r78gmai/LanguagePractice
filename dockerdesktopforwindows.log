@@ -110,3 +110,7 @@ cat
 cat .\ubuntu-20.04-server-cloudimg-amd64-azure.vhd.tar.gz | docker import - amd64-azure01:1.0
 (Get-PSReadlineOption).HistorySavePath
 Start-Transcript ps_log.txt -append
+
+
+PS C:\DockerTest> docker import .\ubuntu-20.04-server-cloudimg-amd64-azure.vhd.tar.gz
+Error response from daemon: Error processing tar file(exit status 1): unhandled tar header type 83
