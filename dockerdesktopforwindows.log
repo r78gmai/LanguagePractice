@@ -68,3 +68,45 @@ PS C:\DockerTest> docker images
 REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
 <none>       <none>    7ea4c407b27f   25 seconds ago   1.33GB
 PS C:\DockerTest>
+
+
+2022年5月26日 実行コマンド　※PowerShell を閉じてしまった為、以下、コマンドのみ記載
+docker load -i .\ubuntu-20.04.4-live-server-amd64.iso
+docker images
+docker import .\ubuntu-20.04.4-live-server-amd64.iso.tar
+docker images
+docker ps
+docker run 7ea4c407b27f
+docker run --help
+docker create 7ea4c407b27f
+docker ps
+docker images
+docker
+docker inspect 7ea4c407b27f
+docker image
+docker image 7ea4c407b27f
+docker run
+docker run 7ea4c407b27f
+docker images
+docker image tag 7ea4c407b27f image_20220526:tag_20200526
+docker images
+docker run -d image_20220526
+docker ps -a
+docker run -d image_20220526:tag_20200526
+docker run -d tag_20200526
+docker run tag_20200526
+docker images
+docker run 7ea4c407b27f
+docker run --help
+docker run -d -p 80:80 docker/getting-started
+docker images
+docker run -d -p 80:80 image_20220526
+docker ps
+docker ps -a
+ls
+Start-Process powershell -Verb runas
+ls
+cat
+cat .\ubuntu-20.04-server-cloudimg-amd64-azure.vhd.tar.gz | docker import - amd64-azure01:1.0
+(Get-PSReadlineOption).HistorySavePath
+Start-Transcript ps_log.txt -append
