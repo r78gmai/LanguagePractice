@@ -1,3 +1,19 @@
+PS C:\DockerTest> systeminfo
+
+ホスト名:               WIN10-PC
+OS 名:                  Microsoft Windows 10 Pro
+OS バージョン:          10.0.19044 N/A ビルド 19044
+OS 製造元:              Microsoft Corporation
+OS 構成:                スタンドアロン ワークステーション
+OS ビルドの種類:        Multiprocessor Free
+
+物理メモリの合計:       4,004 MB
+利用できる物理メモリ:   739 MB
+仮想メモリ: 最大サイズ: 16,292 MB
+仮想メモリ: 利用可能:   7,831 MB
+仮想メモリ: 使用中:     8,461 MB
+※一部、抜
+
 PS C:\Windows\system32> docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 PS C:\Windows\system32> docker version
@@ -70,7 +86,7 @@ REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
 PS C:\DockerTest>
 
 
-2022年5月26日 実行コマンド　※PowerShell を閉じてしまった為、以下、コマンドのみ記載
+※ 以下、 2022年5月26日 実行コマンド　※PowerShell を閉じてしまった為、以下、コマンドのみ記載
 docker load -i .\ubuntu-20.04.4-live-server-amd64.iso
 docker images
 docker import .\ubuntu-20.04.4-live-server-amd64.iso.tar
@@ -114,3 +130,102 @@ Start-Transcript ps_log.txt -append
 
 PS C:\DockerTest> docker import .\ubuntu-20.04-server-cloudimg-amd64-azure.vhd.tar.gz
 Error response from daemon: Error processing tar file(exit status 1): unhandled tar header type 83
+
+
+※ 以下、 2022年5月27日 実行コマンド１
+PS C:\Windows\system32> (Get-PSReadlineOption).HistorySavePath
+C:\Users\Owner\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+PS C:\Windows\system32> Start-Transcript ps_log.txt -append
+トランスクリプトが開始されました。出力ファイル: ps_log.txt
+PS C:\Windows\system32> docker images
+REPOSITORY               TAG            IMAGE ID       CREATED        SIZE
+image_20220526           tag_20200526   7ea4c407b27f   25 hours ago   1.33GB
+docker/getting-started   latest         cb90f98fd791   6 weeks ago    28.8MB
+PS C:\Windows\system32> cd C:\DockerTest
+PS C:\DockerTest> docker import .\ubuntu-20.04-server-cloudimg-amd64-azure.vhd.tar.gz
+Error response from daemon: Error processing tar file(exit status 1): unhandled tar header type 83
+PS C:\DockerTest> ls
+
+
+    ディレクトリ: C:\DockerTest
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2022/05/26     16:05      583473625 ubuntu-20.04-server-cloudimg-amd64-azure.vhd.tar.gz
+-a----        2022/05/26     16:06      328165380 ubuntu-20.04-server-cloudimg-s390x-root.tar.xz
+-a----        2022/05/26     15:19         258178 ubuntu-20.04.4-desktop-amd64.iso.torrent
+-a----        2022/05/25     17:36     1331691520 ubuntu-20.04.4-live-server-amd64.iso
+-a----        2022/05/25     17:47     1331693056 ubuntu-20.04.4-live-server-amd64.iso.tar
+
+
+PS C:\DockerTest> docker ps
+CONTAINER ID   IMAGE                           COMMAND                  CREATED       STATUS       PORTS                NAMES
+f42e90257cb7   docker/getting-started:latest   "/docker-entrypoint.…"   3 hours ago   Up 3 hours   80/tcp               clever_mendel
+be6470ea164f   docker/getting-started          "/docker-entrypoint.…"   3 hours ago   Up 3 hours   0.0.0.0:80->80/tcp   hungry_babbage
+PS C:\DockerTest> docker version
+Client:
+ Cloud integration: v1.0.24
+ Version:           20.10.14
+ API version:       1.41
+ Go version:        go1.16.15
+ Git commit:        a224086
+ Built:             Thu Mar 24 01:53:11 2022
+ OS/Arch:           windows/amd64
+ Context:           default
+ Experimental:      true
+
+Server: Docker Desktop 4.8.2 (79419)
+ Engine:
+  Version:          20.10.14
+  API version:      1.41 (minimum version 1.12)
+  Go version:       go1.16.15
+  Git commit:       87a90dc
+  Built:            Thu Mar 24 01:46:14 2022
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.5.11
+  GitCommit:        3df54a852345ae127d1fa3092b95168e4a88e2f8
+ runc:
+  Version:          1.0.3
+  GitCommit:        v1.0.3-0-gf46b6ba
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+PS C:\DockerTest> docker import .\ubuntu-20.04-server-cloudimg-s390x-root.tar.xz
+sha256:458f29d9bf0c2276f32c4ff299f976de365099f3f957ff3ebf830630328d5541
+PS C:\DockerTest> docker images
+REPOSITORY               TAG            IMAGE ID       CREATED              SIZE
+<none>                   <none>         458f29d9bf0c   About a minute ago   938MB
+image_20220526           tag_20200526   7ea4c407b27f   25 hours ago         1.33GB
+docker/getting-started   latest         cb90f98fd791   6 weeks ago          28.8MB
+PS C:\DockerTest> docker image tag 458f29d9bf0c s390x-20220527:s390x-tag-20220527
+PS C:\DockerTest> docker images
+REPOSITORY               TAG                  IMAGE ID       CREATED        SIZE
+s390x-20220527           s390x-tag-20220527   458f29d9bf0c   15 hours ago   938MB
+image_20220526           tag_20200526         7ea4c407b27f   40 hours ago   1.33GB
+docker/getting-started   latest               cb90f98fd791   6 weeks ago    28.8MB
+PS C:\DockerTest> docker run -d s390x-20220527
+Unable to find image 's390x-20220527:latest' locally
+docker: Error response from daemon: pull access denied for s390x-20220527, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+PS C:\DockerTest> docker run -d s390x-tag-20220527
+Unable to find image 's390x-tag-20220527:latest' locally
+docker: Error response from daemon: pull access denied for s390x-tag-20220527, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+PS C:\DockerTest> docker run -d -p 80:80 s390x-20220527
+Unable to find image 's390x-20220527:latest' locally
+docker: Error response from daemon: pull access denied for s390x-20220527, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                           COMMAND                  CREATED        STATUS        PORTS                NAMES
+f42e90257cb7   docker/getting-started:latest   "/docker-entrypoint.…"   18 hours ago   Up 18 hours   80/tcp               clever_mendel
+be6470ea164f   docker/getting-started          "/docker-entrypoint.…"   19 hours ago   Up 19 hours   0.0.0.0:80->80/tcp   hungry_babbage
+PS C:\DockerTest> docker run -d -p 80:80 docker/getting-started
+3364f0630c9f29766501e3f47bffbb6dfd70676dde12a0f82ad193296e956da7
+docker: Error response from daemon: driver failed programming external connectivity on endpoint brave_raman (e015db366eca77a9b3e180135034c383f19e7306973722aec59655d3a3521a25): Bind for 0.0.0.0:80 failed: port is already allocated.
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                           COMMAND                  CREATED          STATUS        PORTS                NAMES
+3364f0630c9f   docker/getting-started          "/docker-entrypoint.…"   11 seconds ago   Created                            brave_raman
+f42e90257cb7   docker/getting-started:latest   "/docker-entrypoint.…"   18 hours ago     Up 18 hours   80/tcp               clever_mendel
+be6470ea164f   docker/getting-started          "/docker-entrypoint.…"   19 hours ago     Up 19 hours   0.0.0.0:80->80/tcp   hungry_babbage
