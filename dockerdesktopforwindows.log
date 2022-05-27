@@ -14,6 +14,9 @@ OS ビルドの種類:        Multiprocessor Free
 仮想メモリ: 使用中:     8,461 MB
 ※一部、抜
 
+Docker Desktop 4.8.2 (79419)
+Docker Engine　v20.10.14
+
 PS C:\Windows\system32> docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 PS C:\Windows\system32> docker version
