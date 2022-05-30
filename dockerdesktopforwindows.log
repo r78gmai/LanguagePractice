@@ -232,3 +232,588 @@ CONTAINER ID   IMAGE                           COMMAND                  CREATED 
 3364f0630c9f   docker/getting-started          "/docker-entrypoint.…"   11 seconds ago   Created                            brave_raman
 f42e90257cb7   docker/getting-started:latest   "/docker-entrypoint.…"   18 hours ago     Up 18 hours   80/tcp               clever_mendel
 be6470ea164f   docker/getting-started          "/docker-entrypoint.…"   19 hours ago     Up 19 hours   0.0.0.0:80->80/tcp   hungry_babbage
+
+
+20220530 first log
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+新しいクロスプラットフォームの PowerShell をお試しください https://aka.ms/pscore6
+
+. : このシステムではスクリプトの実行が無効になっているため、ファイル C:\Users\Owner\Documents\WindowsPowerShell\profile
+.ps1 を読み込むことができません。詳細については、「about_Execution_Policies」(https://go.microsoft.com/fwlink/?LinkID=1
+35170) を参照してください。
+発生場所 行:1 文字:3
++ . 'C:\Users\Owner\Documents\WindowsPowerShell\profile.ps1'
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : セキュリティ エラー: (: ) []、PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+パーソナル プロファイルとシステム プロファイルの読み込みにかかった時間は 3522 ミリ秒です。
+PS C:\Windows\system32> (Get-PSReadlineOption).HistorySavePath
+C:\Users\Owner\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+PS C:\Windows\system32> Start-Transcript ps_log.txt -append
+トランスクリプトが開始されました。出力ファイル: ps_log.txt
+PS C:\Windows\system32> docker images
+REPOSITORY               TAG            IMAGE ID       CREATED        SIZE
+image_20220526           tag_20200526   7ea4c407b27f   25 hours ago   1.33GB
+docker/getting-started   latest         cb90f98fd791   6 weeks ago    28.8MB
+PS C:\Windows\system32> cd C:\DockerTest
+PS C:\DockerTest> docker import .\ubuntu-20.04-server-cloudimg-amd64-azure.vhd.tar.gz
+Error response from daemon: Error processing tar file(exit status 1): unhandled tar header type 83
+PS C:\DockerTest> ls
+
+
+    ディレクトリ: C:\DockerTest
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2022/05/26     16:05      583473625 ubuntu-20.04-server-cloudimg-amd64-azure.vhd.tar.gz
+-a----        2022/05/26     16:06      328165380 ubuntu-20.04-server-cloudimg-s390x-root.tar.xz
+-a----        2022/05/26     15:19         258178 ubuntu-20.04.4-desktop-amd64.iso.torrent
+-a----        2022/05/25     17:36     1331691520 ubuntu-20.04.4-live-server-amd64.iso
+-a----        2022/05/25     17:47     1331693056 ubuntu-20.04.4-live-server-amd64.iso.tar
+
+
+PS C:\DockerTest> docker ps
+CONTAINER ID   IMAGE                           COMMAND                  CREATED       STATUS       PORTS                NAMES
+f42e90257cb7   docker/getting-started:latest   "/docker-entrypoint.…"   3 hours ago   Up 3 hours   80/tcp               clever_mendel
+be6470ea164f   docker/getting-started          "/docker-entrypoint.…"   3 hours ago   Up 3 hours   0.0.0.0:80->80/tcp   hungry_babbage
+PS C:\DockerTest> docker version
+Client:
+ Cloud integration: v1.0.24
+ Version:           20.10.14
+ API version:       1.41
+ Go version:        go1.16.15
+ Git commit:        a224086
+ Built:             Thu Mar 24 01:53:11 2022
+ OS/Arch:           windows/amd64
+ Context:           default
+ Experimental:      true
+
+Server: Docker Desktop 4.8.2 (79419)
+ Engine:
+  Version:          20.10.14
+  API version:      1.41 (minimum version 1.12)
+  Go version:       go1.16.15
+  Git commit:       87a90dc
+  Built:            Thu Mar 24 01:46:14 2022
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.5.11
+  GitCommit:        3df54a852345ae127d1fa3092b95168e4a88e2f8
+ runc:
+  Version:          1.0.3
+  GitCommit:        v1.0.3-0-gf46b6ba
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+PS C:\DockerTest> docker import .\ubuntu-20.04-server-cloudimg-s390x-root.tar.xz
+sha256:458f29d9bf0c2276f32c4ff299f976de365099f3f957ff3ebf830630328d5541
+PS C:\DockerTest> docker images
+REPOSITORY               TAG            IMAGE ID       CREATED              SIZE
+<none>                   <none>         458f29d9bf0c   About a minute ago   938MB
+image_20220526           tag_20200526   7ea4c407b27f   25 hours ago         1.33GB
+docker/getting-started   latest         cb90f98fd791   6 weeks ago          28.8MB
+PS C:\DockerTest> docker image tag 458f29d9bf0c s390x-20220527:s390x-tag-20220527
+PS C:\DockerTest> docker images
+REPOSITORY               TAG                  IMAGE ID       CREATED        SIZE
+s390x-20220527           s390x-tag-20220527   458f29d9bf0c   15 hours ago   938MB
+image_20220526           tag_20200526         7ea4c407b27f   40 hours ago   1.33GB
+docker/getting-started   latest               cb90f98fd791   6 weeks ago    28.8MB
+PS C:\DockerTest> docker run -d s390x-20220527
+Unable to find image 's390x-20220527:latest' locally
+docker: Error response from daemon: pull access denied for s390x-20220527, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+PS C:\DockerTest> docker run -d s390x-20220527:s390x-tag-20220527
+docker: Error response from daemon: No command specified.
+See 'docker run --help'.
+PS C:\DockerTest> docker run -d s390x-tag-20220527
+Unable to find image 's390x-tag-20220527:latest' locally
+docker: Error response from daemon: pull access denied for s390x-tag-20220527, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+PS C:\DockerTest> docker run -d -p 80:80 s390x-20220527
+Unable to find image 's390x-20220527:latest' locally
+docker: Error response from daemon: pull access denied for s390x-20220527, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+PS C:\DockerTest> docker ps
+CONTAINER ID   IMAGE                           COMMAND                  CREATED        STATUS        PORTS                NAMES
+f42e90257cb7   docker/getting-started:latest   "/docker-entrypoint.…"   18 hours ago   Up 18 hours   80/tcp               clever_mendel
+be6470ea164f   docker/getting-started          "/docker-entrypoint.…"   19 hours ago   Up 19 hours   0.0.0.0:80->80/tcp   hungry_babbage
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                           COMMAND                  CREATED        STATUS        PORTS                NAMES
+f42e90257cb7   docker/getting-started:latest   "/docker-entrypoint.…"   18 hours ago   Up 18 hours   80/tcp               clever_mendel
+be6470ea164f   docker/getting-started          "/docker-entrypoint.…"   19 hours ago   Up 19 hours   0.0.0.0:80->80/tcp   hungry_babbage
+PS C:\DockerTest> docker run -d -p 80:80 docker/getting-started
+3364f0630c9f29766501e3f47bffbb6dfd70676dde12a0f82ad193296e956da7
+docker: Error response from daemon: driver failed programming external connectivity on endpoint brave_raman (e015db366eca77a9b3e180135034c383f19e7306973722aec59655d3a3521a25): Bind for 0.0.0.0:80 failed: port is already allocated.
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                           COMMAND                  CREATED          STATUS        PORTS                NAMES
+3364f0630c9f   docker/getting-started          "/docker-entrypoint.…"   11 seconds ago   Created                            brave_raman
+f42e90257cb7   docker/getting-started:latest   "/docker-entrypoint.…"   18 hours ago     Up 18 hours   80/tcp               clever_mendel
+be6470ea164f   docker/getting-started          "/docker-entrypoint.…"   19 hours ago     Up 19 hours   0.0.0.0:80->80/tcp   hungry_babbage
+PS C:\DockerTest> systeminfo
+
+ホスト名:               WIN10-PC
+OS 名:                  Microsoft Windows 10 Pro
+OS バージョン:          10.0.19044 N/A ビルド 19044
+OS 製造元:              Microsoft Corporation
+OS 構成:                スタンドアロン ワークステーション
+OS ビルドの種類:        Multiprocessor Free
+登録されている所有者:   Owner
+登録されている組織:
+プロダクト ID:          00330-80000-00000-AA863
+最初のインストール日付: 2022/01/19, 9:26:31
+システム起動時間:       2022/05/25, 17:00:08
+システム製造元:         FUJITSU
+システム モデル:        FARR02003
+システムの種類:         x64-based PC
+プロセッサ:             1 プロセッサインストール済みです。
+                        [01]: Intel64 Family 6 Model 78 Stepping 3 GenuineIntel ~2304 Mhz
+BIOS バージョン:        FUJITSU // Insyde Software Corp. Version 1.13, 2016/12/02
+Windows ディレクトリ:   C:\Windows
+システム ディレクトリ:  C:\Windows\system32
+起動デバイス:           \Device\HarddiskVolume2
+システム ロケール:      ja;日本語
+入力ロケール:           ja;日本語
+タイム ゾーン:          (UTC+09:00) 大阪、札幌、東京
+物理メモリの合計:       4,004 MB
+利用できる物理メモリ:   739 MB
+仮想メモリ: 最大サイズ: 16,292 MB
+仮想メモリ: 利用可能:   7,831 MB
+仮想メモリ: 使用中:     8,461 MB
+ページ ファイルの場所:  C:\pagefile.sys
+ドメイン:               WORKGROUP
+ログオン サーバー:      \\WIN10-PC
+ホットフィックス:       12 ホットフィックスがインストールされています。
+                        [01]: KB5013624
+                        [02]: KB4562830
+                        [03]: KB4570334
+                        [04]: KB4577266
+                        [05]: KB4577586
+                        [06]: KB4580325
+                        [07]: KB5003791
+                        [08]: KB5013942
+                        [09]: KB5007273
+                        [10]: KB5011352
+                        [11]: KB5011651
+                        [12]: KB5014032
+ネットワーク カード:    6 NIC(s) インストール済みです。
+                        [01]: Intel(R) Ethernet Connection I219-V
+                              接続名:           イーサネット
+                              状態:          メディアは接続されていません
+                        [02]: Intel(R) Dual Band Wireless-AC 8260
+                              接続名:           Wi-Fi
+                              DHCP が有効:      はい
+                              DHCP サーバー:    192.168.0.1
+                              IP アドレス
+                              [01]: 192.168.0.149
+                              [02]: fe80::5d46:c272:afd2:b185
+                              [03]: 240b:12:a1:2300:e50b:191a:b2ab:6848
+                              [04]: 240b:12:a1:2300:d482:e1a:e848:d48f
+                              [05]: 240b:12:a1:2300:5d46:c272:afd2:b185
+                        [03]: Bluetooth Device (Personal Area Network)
+                              接続名:           Bluetooth ネットワーク接続
+                              状態:          メディアは接続されていません
+                        [04]: VirtualBox Host-Only Ethernet Adapter
+                              接続名:           VirtualBox Host-Only Network
+                              DHCP が有効:      いいえ
+                              IP アドレス
+                              [01]: 192.168.56.1
+                              [02]: fe80::91af:cc03:6658:4241
+                        [05]: Hyper-V Virtual Ethernet Adapter
+                              接続名:           vEthernet (Default Switch)
+                              DHCP が有効:      いいえ
+                              IP アドレス
+                              [01]: 172.17.192.1
+                              [02]: fe80::c98a:db10:a63e:1a7b
+                        [06]: Hyper-V Virtual Ethernet Adapter
+                              接続名:           vEthernet (WSL)
+                              DHCP が有効:      いいえ
+                              IP アドレス
+                              [01]: 172.22.192.1
+                              [02]: fe80::5cad:e795:7adb:8cad
+Hyper-V の要件:         ハイパーバイザーが検出されました。Hyper-V に必要な機能は表示されません。
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                           COMMAND                  CREATED        STATUS                           PORTS                NAMES
+3364f0630c9f   docker/getting-started          "/docker-entrypoint.…"   2 hours ago    Created                                               brave_raman
+f42e90257cb7   docker/getting-started:latest   "/docker-entrypoint.…"   20 hours ago   Exited (255) About an hour ago   80/tcp               clever_mendel
+be6470ea164f   docker/getting-started          "/docker-entrypoint.…"   20 hours ago   Exited (255) About an hour ago   0.0.0.0:80->80/tcp   hungry_babbage
+PS C:\DockerTest> docker images
+REPOSITORY               TAG                  IMAGE ID       CREATED        SIZE
+s390x-20220527           s390x-tag-20220527   458f29d9bf0c   17 hours ago   938MB
+image_20220526           tag_20200526         7ea4c407b27f   41 hours ago   1.33GB
+docker/getting-started   latest               cb90f98fd791   6 weeks ago    28.8MB
+PS C:\DockerTest> docker run -d -p 80:80 s390x-20220527
+Unable to find image 's390x-20220527:latest' locally
+docker: Error response from daemon: pull access denied for s390x-20220527, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+PS C:\DockerTest> docker-compose
+
+Usage:  docker compose [OPTIONS] COMMAND
+
+Docker Compose
+
+Options:
+      --ansi string                Control when to print ANSI control
+                                   characters ("never"|"always"|"auto")
+                                   (default "auto")
+      --compatibility              Run compose in backward compatibility mode
+      --env-file string            Specify an alternate environment file.
+  -f, --file stringArray           Compose configuration files
+      --profile stringArray        Specify a profile to enable
+      --project-directory string   Specify an alternate working directory
+                                   (default: the path of the, first
+                                   specified, Compose file)
+  -p, --project-name string        Project name
+
+Commands:
+  build       Build or rebuild services
+  convert     Converts the compose file to platform's canonical format
+  cp          Copy files/folders between a service container and the local filesystem
+  create      Creates containers for a service.
+  down        Stop and remove containers, networks
+  events      Receive real time events from containers.
+  exec        Execute a command in a running container.
+  images      List images used by the created containers
+  kill        Force stop service containers.
+  logs        View output from containers
+  ls          List running compose projects
+  pause       Pause services
+  port        Print the public port for a port binding.
+  ps          List containers
+  pull        Pull service images
+  push        Push service images
+  restart     Restart containers
+  rm          Removes stopped service containers
+  run         Run a one-off command on a service.
+  start       Start services
+  stop        Stop services
+  top         Display the running processes
+  unpause     Unpause services
+  up          Create and start containers
+  version     Show the Docker Compose version information
+
+Run 'docker compose COMMAND --help' for more information on a command.
+PS C:\DockerTest> docker-compose ps -a
+no configuration file provided: not found
+PS C:\DockerTest> docker-compose ls
+NAME                STATUS              CONFIG FILES
+PS C:\DockerTest> docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+125a6e411906: Pull complete
+Digest: sha256:26c68657ccce2cb0a31b330cb0be2b5e108d467f641c62e13ab40cbec258c68d
+Status: Downloaded newer image for ubuntu:latest
+docker.io/library/ubuntu:latest
+PS C:\DockerTest> docker images
+REPOSITORY               TAG                  IMAGE ID       CREATED        SIZE
+s390x-20220527           s390x-tag-20220527   458f29d9bf0c   19 hours ago   938MB
+image_20220526           tag_20200526         7ea4c407b27f   44 hours ago   1.33GB
+ubuntu                   latest               d2e4e1f51132   3 weeks ago    77.8MB
+docker/getting-started   latest               cb90f98fd791   6 weeks ago    28.8MB
+PS C:\DockerTest> docker save -o ubuntu_saved.tar d2e4e1f51132
+PS C:\DockerTest> ll
+ll : 用語 'll' は、コマンドレット、関数、スクリプト ファイル、または操作可能なプログラムの名前として認識されません。名
+前が正しく記述されていることを確認し、パスが含まれている場合はそのパスが正しいことを確認してから、再試行してください。
+発生場所 行:1 文字:1
++ ll
++ ~~
+    + CategoryInfo          : ObjectNotFound: (ll:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\DockerTest> ls
+
+
+    ディレクトリ: C:\DockerTest
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2022/05/26     16:05      583473625 ubuntu-20.04-server-cloudimg-amd64-azure.vhd.tar.gz
+-a----        2022/05/26     16:06      328165380 ubuntu-20.04-server-cloudimg-s390x-root.tar.xz
+-a----        2022/05/26     15:19         258178 ubuntu-20.04.4-desktop-amd64.iso.torrent
+-a----        2022/05/25     17:36     1331691520 ubuntu-20.04.4-live-server-amd64.iso
+-a----        2022/05/25     17:47     1331693056 ubuntu-20.04.4-live-server-amd64.iso.tar
+-a----        2022/05/27     12:08       27739922 ubuntu-base-20.04.1-base-amd64.tar.gz
+-a----        2022/05/30      9:52       80344064 ubuntu_saved.tar
+
+
+PS C:\DockerTest> docker inspect d2e4e1f51132
+[
+    {
+        "Id": "sha256:d2e4e1f511320dfb2d0baff2468fcf0526998b73fe10c8890b4684bb7ef8290f",
+        "RepoTags": [
+            "ubuntu:latest"
+        ],
+        "RepoDigests": [
+            "ubuntu@sha256:26c68657ccce2cb0a31b330cb0be2b5e108d467f641c62e13ab40cbec258c68d"
+        ],
+        "Parent": "",
+        "Comment": "",
+        "Created": "2022-04-29T23:21:15.708209475Z",
+        "Container": "eb7cb806e690fab07843d24c1ecfa18e24b01b721830e7a3bb8b73b0851486f9",
+        "ContainerConfig": {
+            "Hostname": "eb7cb806e690",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "#(nop) ",
+                "CMD [\"bash\"]"
+            ],
+            "Image": "sha256:319644f21fbe4b478fbef9e4e121c1114d49f22883ff149940f78f6419c00c70",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "DockerVersion": "20.10.12",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "bash"
+            ],
+            "Image": "sha256:319644f21fbe4b478fbef9e4e121c1114d49f22883ff149940f78f6419c00c70",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": null
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 77814330,
+        "VirtualSize": 77814330,
+        "GraphDriver": {
+            "Data": {
+                "MergedDir": "/var/lib/docker/overlay2/cc7cc58e57abbe5ab51a650b6fae2a08dfb3e728c1dea1bf01205101bd39c300/merged",
+                "UpperDir": "/var/lib/docker/overlay2/cc7cc58e57abbe5ab51a650b6fae2a08dfb3e728c1dea1bf01205101bd39c300/diff",
+                "WorkDir": "/var/lib/docker/overlay2/cc7cc58e57abbe5ab51a650b6fae2a08dfb3e728c1dea1bf01205101bd39c300/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:e59fc94956120a6c7629f085027578e6357b48061d45714107e79f04a81a6f0c"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "0001-01-01T00:00:00Z"
+        }
+    }
+]
+PS C:\DockerTest> docker inspect --format="{{.Os}}" d2e4e1f51132
+linux
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                           COMMAND                  CREATED      STATUS                    PORTS                NAMES
+3364f0630c9f   docker/getting-started          "/docker-entrypoint.…"   3 days ago   Created                                        brave_raman
+f42e90257cb7   docker/getting-started:latest   "/docker-entrypoint.…"   3 days ago   Exited (255) 3 days ago   80/tcp               clever_mendel
+be6470ea164f   docker/getting-started          "/docker-entrypoint.…"   3 days ago   Exited (255) 3 days ago   0.0.0.0:80->80/tcp   hungry_babbage
+PS C:\DockerTest> docker rm f42e90257cb7 be6470ea164f
+f42e90257cb7
+be6470ea164f
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                    COMMAND                  CREATED      STATUS    PORTS     NAMES
+3364f0630c9f   docker/getting-started   "/docker-entrypoint.…"   3 days ago   Created             brave_raman
+PS C:\DockerTest> docker images
+REPOSITORY               TAG                  IMAGE ID       CREATED       SIZE
+s390x-20220527           s390x-tag-20220527   458f29d9bf0c   3 days ago    938MB
+image_20220526           tag_20200526         7ea4c407b27f   4 days ago    1.33GB
+ubuntu                   latest               d2e4e1f51132   4 weeks ago   77.8MB
+docker/getting-started   latest               cb90f98fd791   6 weeks ago   28.8MB
+PS C:\DockerTest> docker run -d d2e4e1f51132
+970719f15bddf536b5b31b51da1107d88fe76a1ce3e01903e7f0b5392f347abf
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                    COMMAND                  CREATED          STATUS                     PORTS     NAMES
+970719f15bdd   d2e4e1f51132             "bash"                   11 seconds ago   Exited (0) 7 seconds ago             hopeful_mclean
+3364f0630c9f   docker/getting-started   "/docker-entrypoint.…"   3 days ago       Created                              brave_raman
+PS C:\DockerTest> docker exec -it 970719f15bdd /bin/bash
+Error response from daemon: Container 970719f15bddf536b5b31b51da1107d88fe76a1ce3e01903e7f0b5392f347abf is not running
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                    COMMAND                  CREATED         STATUS                     PORTS     NAMES
+970719f15bdd   d2e4e1f51132             "bash"                   5 minutes ago   Exited (0) 2 minutes ago             hopeful_mclean
+3364f0630c9f   docker/getting-started   "/docker-entrypoint.…"   3 days ago      Created                              brave_raman
+PS C:\DockerTest> docker start 970719f15bdd
+970719f15bdd
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                    COMMAND                  CREATED         STATUS                     PORTS     NAMES
+970719f15bdd   d2e4e1f51132             "bash"                   6 minutes ago   Exited (0) 5 seconds ago             hopeful_mclean
+3364f0630c9f   docker/getting-started   "/docker-entrypoint.…"   3 days ago      Created                              brave_raman
+PS C:\DockerTest> docker run ubuntu:20.04 /bin/echo 'Hello-world'
+Unable to find image 'ubuntu:20.04' locally
+20.04: Pulling from library/ubuntu
+d5fd17ec1767: Pull complete
+Digest: sha256:47f14534bda344d9fe6ffd6effb95eefe579f4be0d508b7445cf77f61a0e5724
+Status: Downloaded newer image for ubuntu:20.04
+Hello-world
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                    COMMAND                  CREATED             STATUS                         PORTS     NAMES
+4c7e8443d582   ubuntu:20.04             "/bin/echo Hello-wor…"   52 seconds ago      Exited (0) 50 seconds ago                elegant_mestorf
+970719f15bdd   d2e4e1f51132             "bash"                   About an hour ago   Exited (0) About an hour ago             hopeful_mclean
+3364f0630c9f   docker/getting-started   "/docker-entrypoint.…"   3 days ago          Created                                  brave_raman
+PS C:\DockerTest> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\DockerTest> docker start 3364f0630c9f
+3364f0630c9f
+PS C:\DockerTest> docker ps
+CONTAINER ID   IMAGE                    COMMAND                  CREATED      STATUS         PORTS                NAMES
+3364f0630c9f   docker/getting-started   "/docker-entrypoint.…"   3 days ago   Up 4 seconds   0.0.0.0:80->80/tcp   brave_raman
+PS C:\DockerTest> docker start 4c7e8443d582
+4c7e8443d582
+PS C:\DockerTest> docker ps
+CONTAINER ID   IMAGE                    COMMAND                  CREATED      STATUS          PORTS                NAMES
+3364f0630c9f   docker/getting-started   "/docker-entrypoint.…"   3 days ago   Up 29 seconds   0.0.0.0:80->80/tcp   brave_raman
+PS C:\DockerTest> docker ps
+CONTAINER ID   IMAGE                    COMMAND                  CREATED      STATUS         PORTS                NAMES
+3364f0630c9f   docker/getting-started   "/docker-entrypoint.…"   3 days ago   Up 5 minutes   0.0.0.0:80->80/tcp   brave_raman
+PS C:\DockerTest> ls
+
+
+    ディレクトリ: C:\DockerTest
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2022/05/26     16:05      583473625 ubuntu-20.04-server-cloudimg-amd64-azure.vhd.tar.gz
+-a----        2022/05/26     16:06      328165380 ubuntu-20.04-server-cloudimg-s390x-root.tar.xz
+-a----        2022/05/26     15:19         258178 ubuntu-20.04.4-desktop-amd64.iso.torrent
+-a----        2022/05/25     17:36     1331691520 ubuntu-20.04.4-live-server-amd64.iso
+-a----        2022/05/25     17:47     1331693056 ubuntu-20.04.4-live-server-amd64.iso.tar
+-a----        2022/05/27     12:08       27739922 ubuntu-base-20.04.1-base-amd64.tar.gz
+-a----        2022/05/30      9:52       80344064 ubuntu_saved.tar
+
+
+PS C:\DockerTest> docer load
+docer : 用語 'docer' は、コマンドレット、関数、スクリプト ファイル、または操作可能なプログラムの名前として認識されません。名前が正しく記述されていることを確認し、パスが含まれている場合はそのパスが正しいことを確
+認してから、再試行してください。
+発生場所 行:1 文字:1
++ docer load
++ ~~~~~
+    + CategoryInfo          : ObjectNotFound: (docer:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\DockerTest> docker load
+requested load from stdin, but stdin is empty
+PS C:\DockerTest> docker load -i .\ubuntu_saved.tar
+Loaded image ID: sha256:d2e4e1f511320dfb2d0baff2468fcf0526998b73fe10c8890b4684bb7ef8290f
+PS C:\DockerTest> docker images
+REPOSITORY               TAG                  IMAGE ID       CREATED       SIZE
+s390x-20220527           s390x-tag-20220527   458f29d9bf0c   3 days ago    938MB
+image_20220526           tag_20200526         7ea4c407b27f   4 days ago    1.33GB
+ubuntu                   latest               d2e4e1f51132   4 weeks ago   77.8MB
+ubuntu                   20.04                53df61775e88   4 weeks ago   72.8MB
+docker/getting-started   latest               cb90f98fd791   6 weeks ago   28.8MB
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                    COMMAND                  CREATED       STATUS                   PORTS                NAMES
+4c7e8443d582   ubuntu:20.04             "/bin/echo Hello-wor…"   2 hours ago   Exited (0) 2 hours ago                        elegant_mestorf
+970719f15bdd   d2e4e1f51132             "bash"                   3 hours ago   Exited (0) 3 hours ago                        hopeful_mclean
+3364f0630c9f   docker/getting-started   "/docker-entrypoint.…"   3 days ago    Up 2 hours               0.0.0.0:80->80/tcp   brave_raman
+PS C:\DockerTest> docker run -itd 4c7e8443d582 /bin/sh
+Unable to find image '4c7e8443d582:latest' locally
+docker: Error response from daemon: pull access denied for 4c7e8443d582, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+PS C:\DockerTest> sudo docker run -itd 4c7e8443d582 /bin/sh
+sudo : 用語 'sudo' は、コマンドレット、関数、スクリプト ファイル、または操作可能なプログラムの名前として認識されません。名前が正しく記述されていることを確認し、パスが含まれている場合はそのパスが正しいことを確認
+してから、再試行してください。
+発生場所 行:1 文字:1
++ sudo docker run -itd 4c7e8443d582 /bin/sh
++ ~~~~
+    + CategoryInfo          : ObjectNotFound: (sudo:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\DockerTest> docker images
+REPOSITORY               TAG                  IMAGE ID       CREATED       SIZE
+s390x-20220527           s390x-tag-20220527   458f29d9bf0c   3 days ago    938MB
+image_20220526           tag_20200526         7ea4c407b27f   4 days ago    1.33GB
+ubuntu                   latest               d2e4e1f51132   4 weeks ago   77.8MB
+ubuntu                   20.04                53df61775e88   4 weeks ago   72.8MB
+docker/getting-started   latest               cb90f98fd791   6 weeks ago   28.8MB
+PS C:\DockerTest> docker create d2e4e1f51132
+a89f7b5ce8a057f8a81b3783fe8e110e603356ea0d42f89683e7f2f4bc978f5c
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                    COMMAND                  CREATED          STATUS                   PORTS                NAMES
+a89f7b5ce8a0   d2e4e1f51132             "bash"                   41 seconds ago   Created                                       lucid_kapitsa
+4c7e8443d582   ubuntu:20.04             "/bin/echo Hello-wor…"   3 hours ago      Exited (0) 2 hours ago                        elegant_mestorf
+970719f15bdd   d2e4e1f51132             "bash"                   4 hours ago      Exited (0) 4 hours ago                        hopeful_mclean
+3364f0630c9f   docker/getting-started   "/docker-entrypoint.…"   3 days ago       Up 2 hours               0.0.0.0:80->80/tcp   brave_raman
+PS C:\DockerTest> docker start -it --name "lucid_kapitsa" ubuntu /bin/bash
+unknown shorthand flag: 't' in -t
+See 'docker start --help'.
+PS C:\DockerTest> docker run -it --name "lucid_kapitsa" ubuntu /bin/bash
+docker: Error response from daemon: Conflict. The container name "/lucid_kapitsa" is already in use by container "a89f7b5ce8a057f8a81b3783fe8e110e603356ea0d42f89683e7f2f4bc978f5c". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                    COMMAND                  CREATED         STATUS                   PORTS                NAMES
+a89f7b5ce8a0   d2e4e1f51132             "bash"                   5 minutes ago   Created                                       lucid_kapitsa
+4c7e8443d582   ubuntu:20.04             "/bin/echo Hello-wor…"   3 hours ago     Exited (0) 3 hours ago                        elegant_mestorf
+970719f15bdd   d2e4e1f51132             "bash"                   4 hours ago     Exited (0) 4 hours ago                        hopeful_mclean
+3364f0630c9f   docker/getting-started   "/docker-entrypoint.…"   3 days ago      Up 3 hours               0.0.0.0:80->80/tcp   brave_raman
+PS C:\DockerTest> docker run -it --name "cont_2022053001" ubuntu /bin/bash
+root@6a520507af50:/# hostname
+6a520507af50
+root@6a520507af50:/# systeminfo
+bash: systeminfo: command not found
+root@6a520507af50:/# cat /etc/os-release
+PRETTY_NAME="Ubuntu 22.04 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+root@6a520507af50:/# /bin/cal
+bash: /bin/cal: No such file or directory
+root@6a520507af50:/# cal
+bash: cal: command not found
+root@6a520507af50:/# pwd
+/
+root@6a520507af50:/# exit
+exit
+PS C:\DockerTest> docker run -it --name "cont_2022053002" 53df61775e88 /bin/bash
+root@ed4783cfa9ec:/# cat /etc/os-release
+NAME="Ubuntu"
+VERSION="20.04.4 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.4 LTS"
+VERSION_ID="20.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
+root@ed4783cfa9ec:/# exit
+exit
+PS C:\DockerTest>
