@@ -817,3 +817,82 @@ UBUNTU_CODENAME=focal
 root@ed4783cfa9ec:/# exit
 exit
 PS C:\DockerTest>
+
+20220530 second 
+PS C:\DockerTest> docker ps -a
+CONTAINER ID   IMAGE                    COMMAND                  CREATED          STATUS                      PORTS                NAMES
+ed4783cfa9ec   53df61775e88             "/bin/bash"              25 minutes ago   Exited (0) 24 minutes ago                        cont_2022053002
+6a520507af50   ubuntu                   "/bin/bash"              49 minutes ago   Exited (0) 26 minutes ago                        cont_2022053001
+a89f7b5ce8a0   d2e4e1f51132             "bash"                   56 minutes ago   Created                                          lucid_kapitsa
+4c7e8443d582   ubuntu:20.04             "/bin/echo Hello-wor…"   3 hours ago      Exited (0) 3 hours ago                           elegant_mestorf
+970719f15bdd   d2e4e1f51132             "bash"                   5 hours ago      Exited (0) 5 hours ago                           hopeful_mclean
+3364f0630c9f   docker/getting-started   "/docker-entrypoint.…"   3 days ago       Up 3 hours                  0.0.0.0:80->80/tcp   brave_raman
+PS C:\DockerTest> docker run -it --name "cont_2022053002" 53df61775e88 /bin/bash
+docker: Error response from daemon: Conflict. The container name "/cont_2022053002" is already in use by container "ed4783cfa9ecc3855323ff41e1216fb1a188c0fa8bb4528e3c1eb651f13fc61a". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+PS C:\DockerTest> docker images
+REPOSITORY               TAG                  IMAGE ID       CREATED       SIZE
+s390x-20220527           s390x-tag-20220527   458f29d9bf0c   3 days ago    938MB
+image_20220526           tag_20200526         7ea4c407b27f   4 days ago    1.33GB
+ubuntu                   latest               d2e4e1f51132   4 weeks ago   77.8MB
+ubuntu                   20.04                53df61775e88   4 weeks ago   72.8MB
+docker/getting-started   latest               cb90f98fd791   6 weeks ago   28.8MB
+PS C:\DockerTest> docker save -o Ubuntu_20.04LTS_saved.tar 53df61775e88
+PS C:\DockerTest> ls
+
+
+    ディレクトリ: C:\DockerTest
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2022/05/26     16:05      583473625 ubuntu-20.04-server-cloudimg-amd64-azure.vhd.tar.gz
+-a----        2022/05/26     16:06      328165380 ubuntu-20.04-server-cloudimg-s390x-root.tar.xz
+-a----        2022/05/26     15:19         258178 ubuntu-20.04.4-desktop-amd64.iso.torrent
+-a----        2022/05/25     17:36     1331691520 ubuntu-20.04.4-live-server-amd64.iso
+-a----        2022/05/25     17:47     1331693056 ubuntu-20.04.4-live-server-amd64.iso.tar
+-a----        2022/05/27     12:08       27739922 ubuntu-base-20.04.1-base-amd64.tar.gz
+-a----        2022/05/30     15:19       75147264 Ubuntu_20.04LTS_saved.tar
+-a----        2022/05/30      9:52       80344064 ubuntu_saved.tar
+
+
+PS C:\DockerTest> docker rmi 53df61775e88
+Error response from daemon: conflict: unable to delete 53df61775e88 (must be forced) - image is being used by stopped container 4c7e8443d582
+PS C:\DockerTest> docker stop 4c7e8443d582
+4c7e8443d582
+PS C:\DockerTest> docker rmi 53df61775e88
+Error response from daemon: conflict: unable to delete 53df61775e88 (must be forced) - image is being used by stopped container 4c7e8443d582
+PS C:\DockerTest> docker rmi -f 53df61775e88
+Untagged: ubuntu:20.04
+Untagged: ubuntu@sha256:47f14534bda344d9fe6ffd6effb95eefe579f4be0d508b7445cf77f61a0e5724
+Deleted: sha256:53df61775e8856a464ca52d4cd9eabbf4eb3ceedbde5afecc57e417e7b7155d5
+PS C:\DockerTest> docker images
+REPOSITORY               TAG                  IMAGE ID       CREATED       SIZE
+s390x-20220527           s390x-tag-20220527   458f29d9bf0c   3 days ago    938MB
+image_20220526           tag_20200526         7ea4c407b27f   4 days ago    1.33GB
+ubuntu                   latest               d2e4e1f51132   4 weeks ago   77.8MB
+docker/getting-started   latest               cb90f98fd791   6 weeks ago   28.8MB
+PS C:\DockerTest> docker load -i .\Ubuntu_20.04LTS_saved.tar
+Loaded image ID: sha256:53df61775e8856a464ca52d4cd9eabbf4eb3ceedbde5afecc57e417e7b7155d5
+PS C:\DockerTest> docker images
+REPOSITORY               TAG                  IMAGE ID       CREATED       SIZE
+s390x-20220527           s390x-tag-20220527   458f29d9bf0c   3 days ago    938MB
+image_20220526           tag_20200526         7ea4c407b27f   4 days ago    1.33GB
+ubuntu                   latest               d2e4e1f51132   4 weeks ago   77.8MB
+<none>                   <none>               53df61775e88   4 weeks ago   72.8MB
+docker/getting-started   latest               cb90f98fd791   6 weeks ago   28.8MB
+PS C:\DockerTest> docker run -it --name "cont_2022053003" 53df61775e88 /bin/bash
+root@dbabb6a2589b:/# cat /etc/os-release
+NAME="Ubuntu"
+VERSION="20.04.4 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.4 LTS"
+VERSION_ID="20.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
+root@dbabb6a2589b:/#
