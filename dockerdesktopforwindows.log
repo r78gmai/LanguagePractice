@@ -896,3 +896,60 @@ PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-poli
 VERSION_CODENAME=focal
 UBUNTU_CODENAME=focal
 root@dbabb6a2589b:/#
+
+20220531 ？
+
+2022060102
+
+ 9 docker start -i dbabb6a2589b
+  10 cd /mnt/c
+  11 docker cp
+  12 docker cp C:\DockerTest\python root@dbabb6a2589b:/mnt
+  13 docker cp C:\DockerTest\python dbabb6a2589b:/mnt
+  14 docker start -i dbabb6a2589b
+
+Python-3.9.10/setup.py
+root@dbabb6a2589b:/mnt/python# ls
+Python-3.9.10  Python-3.9.10.tar.xz  Python-3.9.10.tgz
+root@dbabb6a2589b:/mnt/python# cd Python-3.9.10
+root@dbabb6a2589b:/mnt/python/Python-3.9.10# make install
+bash: make: command not found
+root@dbabb6a2589b:/mnt/python/Python-3.9.10# python
+bash: python: command not found
+root@dbabb6a2589b:/mnt/python/Python-3.9.10# python3
+bash: python3: command not found
+root@dbabb6a2589b:/mnt/python/Python-3.9.10# history
+    1  cat /etc/os-release
+    2  exit
+    3  ls
+    4  cat /etc/os-release
+    5  exit
+    6  ls
+    7  exit
+    8  python -v
+    9  python
+   10  ls
+   11  cd /mnt
+   12  cd /c
+   13  ls
+   14  ll
+   15  touch test.txt
+   16  ls
+   17  pwd
+   18  exit
+   19  ls /mnt
+   20  cd /mnt
+   21  cd python
+   22  ls
+   23  python
+   24  dpkg -i Python-3.9.10.tgz
+   25  dpkg -i Python-3.9.10.tar.xz
+   26  ll
+   27  tar -zxvf Python-3.9.10.tgz
+   28  ls
+   29  cd Python-3.9.10
+   30  make install
+   31  python
+   32  python3
+   33  history
+root@dbabb6a2589b:/mnt/python/Python-3.9.10#
