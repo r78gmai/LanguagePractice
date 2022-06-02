@@ -1206,21 +1206,130 @@ Options:
       --target string           Set the target build stage to build.
 PS C:\DockerTest\dockerfiletest> docker build -t . ubuntu20.04-file:20220601
 invalid argument "." for "-t, --tag" flag: invalid reference format
-See 'docker build --help'.
-[+] Building 17.2s (5/7)
- => [internal] load build definition from Dockerfile                                                               0.2sb
- => => transferring dockerfile: 131B                                                                               0.0s
- => [internal] load .dockerignore                                                                                  0.1s
- => => transferring context: 2B                                                                                    0.0s
- => [internal] load metadata for docker.io/library/ubuntu:20.04                                                    5.0sb
- => [auth] library/ubuntu:pull token for registry-1.docker.io                                                      0.0s
- => [1/3] FROM docker.io/library/ubuntu:20.04@sha256:47f14534bda344d9fe6ffd6effb95eefe579f4be0d508b7445cf77f61a0e  0.1s
- => => resolve docker.io/library/ubuntu:20.04@sha256:47f14534bda344d9fe6ffd6effb95eefe579f4be0d508b7445cf77f61a0e  0.0s
- => [2/3] RUN apt-get update                                                                                      11.7s
- => => # Get:4 http://archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
- => => # Get:5 http://archive.ubuntu.com/ubuntu focal-backports InRelease [108 kB]
- => => # Get:6 http://archive.ubuntu.com/ubuntu focal/main amd64 Packages [1275 kB]
- => => # Get:7 http://archive.ubuntu.com/ubuntu focal/restricted amd64 Packages [33.4 kB]
- => => # Get:8 http://archive.ubuntu.com/ubuntu focal/universe amd64 Packages [11.3 MB]
- => => # Get:9 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [1218 kB]
 
+2022060202
+PS C:\DockerTest\dockerfiletest> cat .\Dockerfile
+FROM ubuntu:20.04
+
+#RUN apt-get update
+RUN apt install python
+
+CMD ["/bin/bash"]
+PS C:\DockerTest\dockerfiletest> docker build -t ubuntu20.04-file:20220601 .
+[+] Building 3.6s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 122B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:20.04                                                    3.0s
+ => [auth] library/ubuntu:pull token for registry-1.docker.io                                                      0.0s
+ => CACHED [1/2] FROM docker.io/library/ubuntu:20.04@sha256:47f14534bda344d9fe6ffd6effb95eefe579f4be0d508b7445cf7  0.0s
+ => ERROR [2/2] RUN apt install python                                                                             0.5s
+------
+ > [2/2] RUN apt install python:
+#6 0.454
+#6 0.454 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+#6 0.454
+#6 0.463 Reading package lists...
+#6 0.486 Building dependency tree...
+#6 0.487 Reading state information...
+#6 0.489 E: Unable to locate package python
+------
+executor failed running [/bin/sh -c apt install python]: exit code: 100
+PS C:\DockerTest\dockerfiletest> cat .\Dockerfile
+FROM ubuntu:20.04
+
+#RUN apt-get update
+RUN apt install python
+
+CMD ["/bin/bash"]
+PS C:\DockerTest\dockerfiletest> cd ..
+
+
+    ディレクトリ: C:\DockerTest
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+
+
+PS C:\DockerTest> cd .\dockerfiletest2
+PS C:\DockerTest\dockerfiletest2> docker build -t python3-file:20220601 .
+[+] Building 79.8s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 76B                                                                                0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   4.1s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => [1/1] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add921766b36e  74.8s
+ => => resolve docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add921766b36e8  0.0s
+ => => sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add921766b36e89e6e8 2.35kB / 2.35kB                     0.0s
+ => => sha256:716d7c7b7a80681bf86fe37bfa585311336dbd7727a959efcddc169709cb2a80 8.54kB / 8.54kB                     0.0s
+ => => sha256:ff5b10aec998344606441aec43a335ab6326f32aae331aab27da16a6bb4ec2be 10.87MB / 10.87MB                   3.5s
+ => => sha256:f02ca062c296a4dfa35aed780817689f5c2cda469e1b349968713cf272a1b3a0 2.22kB / 2.22kB                     0.0s
+ => => sha256:e4d61adff2077d048c6372d73c41b0bd68f525ad41f5530af05098a876683055 54.92MB / 54.92MB                  14.1s
+ => => sha256:4ff1945c672b08a1791df62afaaf8aff14d3047155365f9c3646902937f7ffe6 5.15MB / 5.15MB                     2.0s
+ => => sha256:12de8c754e45686ace9e25d11bee372b070eed5b5ab20aa3b4fab8c936496d02 54.58MB / 54.58MB                  16.7s
+ => => sha256:ada1762e76024dd216336649249fc2470257acc5af277bae3c71710382df345f 196.52MB / 196.52MB                29.3s
+ => => sha256:2f2b2e030155d32fbf69b4feeced1877ce0e3f21b5f27b98eb080c3ef01a70df 6.29MB / 6.29MB                    16.4s
+ => => extracting sha256:e4d61adff2077d048c6372d73c41b0bd68f525ad41f5530af05098a876683055                         15.1s
+ => => sha256:f6027d367705c99099e7884a7d6b36efa0bccd833701feaa66d36d55c0cb46b1 17.75MB / 17.75MB                  19.6s
+ => => sha256:5d0ddbf568b3ae1e9686605a95a104d96d655f18c3096e87bc23a7e4d35afa86 236B / 236B                        17.2s
+ => => sha256:5e55ba18a2089ef984cf68639e24e0699c2f0e06229e5c986f99f518e13a0079 2.34MB / 2.34MB                    18.3s
+ => => extracting sha256:4ff1945c672b08a1791df62afaaf8aff14d3047155365f9c3646902937f7ffe6                          0.4s
+ => => extracting sha256:ff5b10aec998344606441aec43a335ab6326f32aae331aab27da16a6bb4ec2be                          0.5s
+ => => extracting sha256:12de8c754e45686ace9e25d11bee372b070eed5b5ab20aa3b4fab8c936496d02                          5.1s
+ => => extracting sha256:2f2b2e030155d32fbf69b4feeced1877ce0e3f21b5f27b98eb080c3ef01a70df                          0.6s
+ => => extracting sha256:f6027d367705c99099e7884a7d6b36efa0bccd833701feaa66d36d55c0cb46b1                          2.2s
+ => => extracting sha256:5d0ddbf568b3ae1e9686605a95a104d96d655f18c3096e87bc23a7e4d35afa86                          0.0s
+ => => extracting sha256:5e55ba18a2089ef984cf68639e24e0699c2f0e06229e5c986f99f518e13a0079                          0.6s
+ => exporting to image                                                                                             0.3s
+ => => exporting layers                                                                                            0.0s
+ => => writing image sha256:1f4a8da6ebdf373250e92f0975719d3f9bb62805beb068bee0b0c20e354ad1c0                       0.0s
+ => => naming to docker.io/library/python3-file:20220601                                                           0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+PS C:\DockerTest\dockerfiletest2> docker images
+REPOSITORY                TAG                  IMAGE ID       CREATED        SIZE
+s390x-20220527            s390x-tag-20220527   458f29d9bf0c   6 days ago     938MB
+image_20220526            tag_20200526         7ea4c407b27f   7 days ago     1.33GB
+ubuntu                    latest               d2e4e1f51132   4 weeks ago    77.8MB
+ubuntu20.04lts_20220530   20.04_20220530       53df61775e88   4 weeks ago    72.8MB
+docker/getting-started    latest               cb90f98fd791   7 weeks ago    28.8MB
+python3-file              20220601             1f4a8da6ebdf   2 months ago   912MB
+PS C:\DockerTest\dockerfiletest2> docker run -it --name "pycont_20220602" 1f4a8da6ebdf /bin/bash
+root@2d941c5b9ca4:/# python -V
+Python 3.9.10
+root@2d941c5b9ca4:/# python
+Python 3.9.10 (main, Mar  2 2022, 04:23:34)
+[GCC 10.2.1 20210110] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 1+1
+2
+>>>
+KeyboardInterrupt
+>>> exit
+Use exit() or Ctrl-D (i.e. EOF) to exit
+>>> exit()
+root@2d941c5b9ca4:/# pwd
+/
+root@2d941c5b9ca4:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@2d941c5b9ca4:/# cat /etc/os-release
+PRETTY_NAME="Debian GNU/Linux 11 (bullseye)"
+NAME="Debian GNU/Linux"
+VERSION_ID="11"
+VERSION="11 (bullseye)"
+VERSION_CODENAME=bullseye
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+root@2d941c5b9ca4:/# exit
+exit
+PS C:\DockerTest\dockerfiletest2> cat .\Dockerfile
+FROM python:3.9.10
+
+CMD ["/bin/bash"]
+PS C:\DockerTest\dockerfiletest2>
