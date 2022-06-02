@@ -1,0 +1,85 @@
+user@Win10-PC:~$ sudo passwd root
+[sudo] password for user:
+New password:
+Retype new password:
+passwd: password updated successfully
+user@Win10-PC:~$ su
+Password:
+root@Win10-PC:/home/user# cat /etc/os-release
+NAME="Ubuntu"
+VERSION="20.04.3 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.3 LTS"
+VERSION_ID="20.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
+root@Win10-PC:/home/user# ls
+environment
+root@Win10-PC:/home/user# cd environment/
+root@Win10-PC:/home/user/environment# ls
+root@Win10-PC:/home/user/environment# dpkg -i docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb
+Selecting previously unselected package docker-ce.
+(Reading database ... 32223 files and directories currently installed.)
+Preparing to unpack docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb ...
+Unpacking docker-ce (5:20.10.16~3-0~ubuntu-focal) ...
+dpkg: dependency problems prevent configuration of docker-ce:
+ docker-ce depends on containerd.io (>= 1.4.1); however:
+  Package containerd.io is not installed.
+ docker-ce depends on docker-ce-cli; however:
+  Package docker-ce-cli is not installed.
+
+dpkg: error processing package docker-ce (--install):
+ dependency problems - leaving unconfigured
+Processing triggers for systemd (245.4-4ubuntu3.11) ...
+Errors were encountered while processing:
+ docker-ce
+root@Win10-PC:/home/user/environment# ls
+containerd.io_1.6.4-1_amd64.deb                    docker-ce-cli_20.10.16_3-0_ubuntu-focal_amd64.deb:Zone.Identifier
+containerd.io_1.6.4-1_amd64.deb:Zone.Identifier    docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb
+docker-ce-cli_20.10.16_3-0_ubuntu-focal_amd64.deb  docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb:Zone.Identifier
+root@Win10-PC:/home/user/environment# dpkg -i containerd.io_1.6.4-1_amd64.deb
+Selecting previously unselected package containerd.io.
+(Reading database ... 32235 files and directories currently installed.)
+Preparing to unpack containerd.io_1.6.4-1_amd64.deb ...
+Unpacking containerd.io (1.6.4-1) ...
+Setting up containerd.io (1.6.4-1) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service → /lib/systemd/system/containerd.service.
+Processing triggers for man-db (2.9.1-1) ...
+root@Win10-PC:/home/user/environment# dpkg -i docker-ce-cli_20.10.16_3-0_ubuntu-focal_amd64.deb
+Selecting previously unselected package docker-ce-cli.
+(Reading database ... 32251 files and directories currently installed.)
+Preparing to unpack docker-ce-cli_20.10.16_3-0_ubuntu-focal_amd64.deb ...
+Unpacking docker-ce-cli (5:20.10.16~3-0~ubuntu-focal) ...
+Setting up docker-ce-cli (5:20.10.16~3-0~ubuntu-focal) ...
+Processing triggers for man-db (2.9.1-1) ...
+root@Win10-PC:/home/user/environment# dpkg -i docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb
+(Reading database ... 32449 files and directories currently installed.)
+Preparing to unpack docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb ...
+Unpacking docker-ce (5:20.10.16~3-0~ubuntu-focal) over (5:20.10.16~3-0~ubuntu-focal) ...
+Setting up docker-ce (5:20.10.16~3-0~ubuntu-focal) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /lib/systemd/system/docker.service.
+Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /lib/systemd/system/docker.socket.
+invoke-rc.d: could not determine current runlevel
+Processing triggers for systemd (245.4-4ubuntu3.11) ...
+root@Win10-PC:/home/user/environment# docker -v
+Docker version 20.10.16, build aa7e414
+root@Win10-PC:/home/user/environment# docker --version
+Docker version 20.10.16, build aa7e414
+root@Win10-PC:/home/user/environment# docker version
+Client: Docker Engine - Community
+ Version:           20.10.16
+ API version:       1.41
+ Go version:        go1.17.10
+ Git commit:        aa7e414
+ Built:             Thu May 12 09:17:23 2022
+ OS/Arch:           linux/amd64
+ Context:           default
+ Experimental:      true
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+root@Win10-PC:/home/user/environment#
+
