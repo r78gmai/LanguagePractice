@@ -83,3 +83,245 @@ Client: Docker Engine - Community
 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
 root@Win10-PC:/home/user/environment#
 
+Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.10.16.3-microsoft-standard-WSL2 x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Thu Jun  2 16:21:40 JST 2022
+
+  System load:  0.0                Processes:             13
+  Usage of /:   0.6% of 250.98GB   Users logged in:       0
+  Memory usage: 27%                IPv4 address for eth0: 172.22.192.108
+  Swap usage:   0%
+
+1 update can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+
+This message is shown once a day. To disable it please create the
+/home/user/.hushlogin file.
+user@Win10-PC:~$ docker -v
+Docker version 20.10.16, build aa7e414
+user@Win10-PC:~$ su
+Password:
+root@Win10-PC:/home/user# systemctl daemon-reload
+System has not been booted with systemd as init system (PID 1). Can't operate.
+Failed to connect to bus: Host is down
+root@Win10-PC:/home/user# cd environment/
+root@Win10-PC:/home/user/environment# ls
+containerd.io_1.6.4-1_amd64.deb
+containerd.io_1.6.4-1_amd64.deb:Zone.Identifier
+daemonize_1.7.7-1_amd64.deb
+daemonize_1.7.7-1_amd64.deb:Zone.Identifier
+docker-ce-cli_20.10.16_3-0_ubuntu-focal_amd64.deb
+docker-ce-cli_20.10.16_3-0_ubuntu-focal_amd64.deb:Zone.Identifier
+docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb
+docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb:Zone.Identifier
+packages-microsoft-prod.deb
+packages-microsoft-prod.deb:Zone.Identifier
+systemd-genie.deb
+systemd-genie.deb:Zone.Identifier
+root@Win10-PC:/home/user/environment# dpkg -i daemonize_1.7.7-1_amd64.deb
+Selecting previously unselected package daemonize.
+(Reading database ... 32449 files and directories currently installed.)
+Preparing to unpack daemonize_1.7.7-1_amd64.deb ...
+Unpacking daemonize (1.7.7-1) ...
+Setting up daemonize (1.7.7-1) ...
+Processing triggers for man-db (2.9.1-1) ...
+root@Win10-PC:/home/user/environment# dpkg -i packages-microsoft-prod.deb
+Selecting previously unselected package packages-microsoft-prod.
+(Reading database ... 32454 files and directories currently installed.)
+Preparing to unpack packages-microsoft-prod.deb ...
+Unpacking packages-microsoft-prod (1.0-ubuntu20.04.1) ...
+Setting up packages-microsoft-prod (1.0-ubuntu20.04.1) ...
+root@Win10-PC:/home/user/environment# dpkg -i systemd-genie.deb
+Selecting previously unselected package systemd-genie.
+(Reading database ... 32462 files and directories currently installed.)
+Preparing to unpack systemd-genie.deb ...
+Unpacking systemd-genie (1.26) ...
+dpkg: dependency problems prevent configuration of systemd-genie:
+ systemd-genie depends on dotnet-runtime-3.1; however:
+  Package dotnet-runtime-3.1 is not installed.
+
+dpkg: error processing package systemd-genie (--install):
+ dependency problems - leaving unconfigured
+Errors were encountered while processing:
+ systemd-genie
+root@Win10-PC:/home/user/environment# ls
+containerd.io_1.6.4-1_amd64.deb
+containerd.io_1.6.4-1_amd64.deb:Zone.Identifier
+daemonize_1.7.7-1_amd64.deb
+daemonize_1.7.7-1_amd64.deb:Zone.Identifier
+docker-ce-cli_20.10.16_3-0_ubuntu-focal_amd64.deb
+docker-ce-cli_20.10.16_3-0_ubuntu-focal_amd64.deb:Zone.Identifier
+docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb
+docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb:Zone.Identifier
+dotnet-runtime-3.1.25-x64.deb
+dotnet-runtime-3.1.25-x64.deb:Zone.Identifier
+packages-microsoft-prod.deb
+packages-microsoft-prod.deb:Zone.Identifier
+systemd-genie.deb
+systemd-genie.deb:Zone.Identifier
+root@Win10-PC:/home/user/environment# dpkg -i dotnet-runtime-3.1.25-x64.deb
+Selecting previously unselected package dotnet-runtime-3.1.
+(Reading database ... 32483 files and directories currently installed.)
+Preparing to unpack dotnet-runtime-3.1.25-x64.deb ...
+Unpacking dotnet-runtime-3.1 (3.1.25-1) ...
+dpkg: dependency problems prevent configuration of dotnet-runtime-3.1:
+ dotnet-runtime-3.1 depends on dotnet-hostfxr-3.1 (>= 3.1.25); however:
+  Package dotnet-hostfxr-3.1 is not installed.
+ dotnet-runtime-3.1 depends on dotnet-runtime-deps-3.1 (>= 3.1.25); however:
+  Package dotnet-runtime-deps-3.1 is not installed.
+
+dpkg: error processing package dotnet-runtime-3.1 (--install):
+ dependency problems - leaving unconfigured
+Errors were encountered while processing:
+ dotnet-runtime-3.1
+root@Win10-PC:/home/user/environment# ls
+containerd.io_1.6.4-1_amd64.deb                                    dotnet-hostfxr-3.1.25-x64.deb:Zone.Identifier
+containerd.io_1.6.4-1_amd64.deb:Zone.Identifier                    dotnet-runtime-3.1.25-x64.deb
+daemonize_1.7.7-1_amd64.deb                                        dotnet-runtime-3.1.25-x64.deb:Zone.Identifier
+daemonize_1.7.7-1_amd64.deb:Zone.Identifier                        dotnet-runtime-deps-3.1.25-x64.deb
+docker-ce-cli_20.10.16_3-0_ubuntu-focal_amd64.deb                  dotnet-runtime-deps-3.1.25-x64.deb:Zone.Identifier
+docker-ce-cli_20.10.16_3-0_ubuntu-focal_amd64.deb:Zone.Identifier  packages-microsoft-prod.deb
+docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb                      packages-microsoft-prod.deb:Zone.Identifier
+docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb:Zone.Identifier      systemd-genie.deb
+dotnet-hostfxr-3.1.25-x64.deb                                      systemd-genie.deb:Zone.Identifier
+root@Win10-PC:/home/user/environment# dpkg -i dotnet-hostfxr-3.1.25-x64.deb
+Selecting previously unselected package dotnet-hostfxr-3.1.
+(Reading database ... 32678 files and directories currently installed.)
+Preparing to unpack dotnet-hostfxr-3.1.25-x64.deb ...
+Unpacking dotnet-hostfxr-3.1 (3.1.25-1) ...
+dpkg: dependency problems prevent configuration of dotnet-hostfxr-3.1:
+ dotnet-hostfxr-3.1 depends on dotnet-host (>= 3.1.25); however:
+  Package dotnet-host is not installed.
+
+dpkg: error processing package dotnet-hostfxr-3.1 (--install):
+ dependency problems - leaving unconfigured
+Errors were encountered while processing:
+ dotnet-hostfxr-3.1
+root@Win10-PC:/home/user/environment# ls
+containerd.io_1.6.4-1_amd64.deb                                    dotnet-hostfxr-3.1.25-x64.deb
+containerd.io_1.6.4-1_amd64.deb:Zone.Identifier                    dotnet-hostfxr-3.1.25-x64.deb:Zone.Identifier
+daemonize_1.7.7-1_amd64.deb                                        dotnet-runtime-3.1.25-x64.deb
+daemonize_1.7.7-1_amd64.deb:Zone.Identifier                        dotnet-runtime-3.1.25-x64.deb:Zone.Identifier
+docker-ce-cli_20.10.16_3-0_ubuntu-focal_amd64.deb                  dotnet-runtime-deps-3.1.25-x64.deb
+docker-ce-cli_20.10.16_3-0_ubuntu-focal_amd64.deb:Zone.Identifier  dotnet-runtime-deps-3.1.25-x64.deb:Zone.Identifier
+docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb                      packages-microsoft-prod.deb
+docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb:Zone.Identifier      packages-microsoft-prod.deb:Zone.Identifier
+dotnet-host-6.0.5-x64.deb                                          systemd-genie.deb
+dotnet-host-6.0.5-x64.deb:Zone.Identifier                          systemd-genie.deb:Zone.Identifier
+root@Win10-PC:/home/user/environment# dpkg -i dotnet-host-6.0.5-x64.deb
+Selecting previously unselected package dotnet-host.
+(Reading database ... 32685 files and directories currently installed.)
+Preparing to unpack dotnet-host-6.0.5-x64.deb ...
+Unpacking dotnet-host (6.0.5-1) ...
+Setting up dotnet-host (6.0.5-1) ...
+Processing triggers for man-db (2.9.1-1) ...
+root@Win10-PC:/home/user/environment# dpkg -i dotnet-hostfxr-3.1.25-x64.deb
+(Reading database ... 32693 files and directories currently installed.)
+Preparing to unpack dotnet-hostfxr-3.1.25-x64.deb ...
+Unpacking dotnet-hostfxr-3.1 (3.1.25-1) over (3.1.25-1) ...
+Setting up dotnet-hostfxr-3.1 (3.1.25-1) ...
+root@Win10-PC:/home/user/environment# dpkg -i dotnet-runtime-deps-3.1.25-x64.deb
+Selecting previously unselected package dotnet-runtime-deps-3.1.
+(Reading database ... 32693 files and directories currently installed.)
+Preparing to unpack dotnet-runtime-deps-3.1.25-x64.deb ...
+Unpacking dotnet-runtime-deps-3.1 (3.1.25-1) ...
+Setting up dotnet-runtime-deps-3.1 (3.1.25-1) ...
+root@Win10-PC:/home/user/environment# dpkg -i dotnet-runtime-3.1.25-x64.deb
+(Reading database ... 32696 files and directories currently installed.)
+Preparing to unpack dotnet-runtime-3.1.25-x64.deb ...
+Unpacking dotnet-runtime-3.1 (3.1.25-1) over (3.1.25-1) ...
+Setting up dotnet-runtime-3.1 (3.1.25-1) ...
+root@Win10-PC:/home/user/environment# dpkg -i systemd-genie.deb
+(Reading database ... 32696 files and directories currently installed.)
+Preparing to unpack systemd-genie.deb ...
+Unpacking systemd-genie (1.26) over (1.26) ...
+Setting up systemd-genie (1.26) ...
+root@Win10-PC:/home/user/environment# genie -s
+user@Win10-PC-wsl:~$ ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1 13.2  0.4 109536 12868 ?        Ss   17:11   0:02 systemd
+root          42  0.1  0.1   9964  3436 pts/1    S    17:11   0:00 runuser -l user -w INSIDE_GENIE,WSL_DISTRO_NAME,WSL_I
+user          43  0.5  0.1   5296  4576 pts/1    S    17:11   0:00 -bash
+root          60  2.6  0.3  35096 12648 ?        S<s  17:11   0:00 /lib/systemd/systemd-journald
+root          79  1.4  0.1  19564  5136 ?        Ss   17:11   0:00 /lib/systemd/systemd-udevd
+systemd+      90  0.7  0.2  18412  7536 ?        Ss   17:11   0:00 /lib/systemd/systemd-networkd
+systemd+     262  1.5  0.3  23964 12040 ?        Ss   17:11   0:00 /lib/systemd/systemd-resolved
+root         266  0.5  0.2 241036  9004 ?        Ssl  17:11   0:00 /usr/lib/accountsservice/accounts-daemon
+message+     267  1.6  0.1   7376  4480 ?        Ss   17:11   0:00 /usr/bin/dbus-daemon --system --address=systemd: --no
+root         270  5.3  0.5  29284 17824 ?        Ss   17:11   0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-s
+syslog       271  0.6  0.1 224352  5888 ?        Ssl  17:11   0:00 /usr/sbin/rsyslogd -n -iNONE
+root         272 25.8  1.2 1295168 38916 ?       Ssl  17:11   0:03 /usr/lib/snapd/snapd
+root         273  2.0  0.1  16616  6292 ?        Ss   17:11   0:00 /lib/systemd/systemd-logind
+root         274  1.7  0.4 394928 13288 ?        Ssl  17:11   0:00 /usr/lib/udisks2/udisksd
+root         299  0.1  0.0   8540  2908 ?        Ss   17:11   0:00 /usr/sbin/cron -f
+root         310  3.0  0.6 108112 20596 ?        Ssl  17:11   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unatt
+root         311 11.5  1.7 1429664 55688 ?       Ssl  17:11   0:01 /usr/bin/containerd
+daemon       312  0.0  0.0   3796  2188 ?        Ss   17:11   0:00 /usr/sbin/atd -f
+root         318  0.5  0.2 236424  8860 ?        Ssl  17:11   0:00 /usr/lib/policykit-1/polkitd --no-debug
+root         319  0.0  0.0   7356  2224 tty1     Ss+  17:11   0:00 /sbin/agetty -o -p -- \u --noclear --keep-baud consol
+root         327  0.0  0.0   5832  1800 ?        Ss   17:11   0:00 /sbin/agetty -o -p -- \u --noclear tty1 linux
+root         363 25.8  2.6 1382556 83364 ?       Ssl  17:11   0:02 /usr/bin/dockerd -H fd:// --containerd=/run/container
+user        1003  0.0  0.0   5900  2800 pts/1    R+   17:12   0:00 ps aux
+user@Win10-PC-wsl:~$ su
+Password:
+root@Win10-PC-wsl:/home/user# service docker status
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2022-06-02 17:12:01 JST; 14min ago
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 363 (dockerd)
+      Tasks: 9
+     Memory: 30.8M
+     CGroup: /system.slice/docker.service
+             └─363 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+Jun 02 17:11:59 Win10-PC-wsl dockerd[363]: time="2022-06-02T17:11:59.055789800+09:00" level=warning msg="Your kernel do>
+Jun 02 17:11:59 Win10-PC-wsl dockerd[363]: time="2022-06-02T17:11:59.055956300+09:00" level=warning msg="Your kernel do>
+Jun 02 17:11:59 Win10-PC-wsl dockerd[363]: time="2022-06-02T17:11:59.056133700+09:00" level=warning msg="Your kernel do>
+Jun 02 17:11:59 Win10-PC-wsl dockerd[363]: time="2022-06-02T17:11:59.065454300+09:00" level=info msg="Loading container>
+Jun 02 17:12:00 Win10-PC-wsl dockerd[363]: time="2022-06-02T17:12:00.029282100+09:00" level=info msg="Default bridge (d>
+Jun 02 17:12:00 Win10-PC-wsl dockerd[363]: time="2022-06-02T17:12:00.695704500+09:00" level=info msg="Loading container>
+Jun 02 17:12:01 Win10-PC-wsl dockerd[363]: time="2022-06-02T17:12:01.045261300+09:00" level=info msg="Docker daemon" co>
+Jun 02 17:12:01 Win10-PC-wsl dockerd[363]: time="2022-06-02T17:12:01.047990400+09:00" level=info msg="Daemon has comple>
+Jun 02 17:12:01 Win10-PC-wsl dockerd[363]: time="2022-06-02T17:12:01.388719300+09:00" level=info msg="API listen on /ru>
+Jun 02 17:12:01 Win10-PC-wsl systemd[1]: Started Docker Application Container Engine.
+root@Win10-PC-wsl:/home/user# docker version
+Client: Docker Engine - Community
+ Version:           20.10.16
+ API version:       1.41
+ Go version:        go1.17.10
+ Git commit:        aa7e414
+ Built:             Thu May 12 09:17:23 2022
+ OS/Arch:           linux/amd64
+ Context:           default
+ Experimental:      true
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          20.10.16
+  API version:      1.41 (minimum version 1.12)
+  Go version:       go1.17.10
+  Git commit:       f756502
+  Built:            Thu May 12 09:15:28 2022
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.6.4
+  GitCommit:        212e8b6fa2f44b9c21b2798135fc6fb7c53efc16
+ runc:
+  Version:          1.1.1
+  GitCommit:        v1.1.1-0-g52de29d
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+root@Win10-PC-wsl:/home/user#
