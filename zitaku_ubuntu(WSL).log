@@ -325,3 +325,37 @@ Server: Docker Engine - Community
   Version:          0.19.0
   GitCommit:        de40ad0
 root@Win10-PC-wsl:/home/user#
+
+
+20220603 Flow
+sudo passwd root
+cat /etc/os-release
+
+root@Win10-PC:/home/user# cd environment/
+
+
+root@Win10-PC:/home/user/environment# dpkg -i containerd.io_1.6.4-1_amd64.deb
+root@Win10-PC:/home/user/environment# dpkg -i docker-ce-cli_20.10.16_3-0_ubuntu-focal_amd64.deb
+root@Win10-PC:/home/user/environment# dpkg -i docker-ce_20.10.16_3-0_ubuntu-focal_amd64.deb
+
+root@Win10-PC:/home/user/environment# docker version
+
+root@Win10-PC:/home/user# systemctl daemon-reload
+
+root@Win10-PC:/home/user/environment# dpkg -i daemonize_1.7.7-1_amd64.deb
+root@Win10-PC:/home/user/environment# dpkg -i packages-microsoft-prod.deb
+
+root@Win10-PC:/home/user/environment# dpkg -i dotnet-host-6.0.5-x64.deb
+root@Win10-PC:/home/user/environment# dpkg -i dotnet-hostfxr-3.1.25-x64.deb
+root@Win10-PC:/home/user/environment# dpkg -i dotnet-runtime-deps-3.1.25-x64.deb
+
+root@Win10-PC:/home/user/environment# dpkg -i dotnet-runtime-3.1.25-x64.deb
+root@Win10-PC:/home/user/environment# dpkg -i systemd-genie.deb
+
+root@Win10-PC:/home/user/environment# genie -s
+user@Win10-PC-wsl:~$ ps aux
+
+su
+root@Win10-PC-wsl:/home/user# service docker status
+
+root@Win10-PC-wsl:/home/user# docker version
