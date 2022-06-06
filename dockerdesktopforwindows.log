@@ -1333,3 +1333,171 @@ FROM python:3.9.10
 
 CMD ["/bin/bash"]
 PS C:\DockerTest\dockerfiletest2>
+
+
+2022060601
+
+PS C:\DockerTest\dockerfiletest2> ls
+
+
+    ディレクトリ: C:\DockerTest\dockerfiletest2
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2022/06/02     15:06             39 Dockerfile
+
+
+PS C:\DockerTest\dockerfiletest2> docker run -it --name "pycont_20220602" 1f4a8da6ebdf /bin/bash
+1c5b9ca47e4fee37f62e2b873c1c369f5327f8a6d8bd2212afdbe493feb7". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+PS C:\DockerTest\dockerfiletest2> docker start -i pycont_20220602
+root@2d941c5b9ca4:/# cd /mnt
+root@2d941c5b9ca4:/mnt# ls
+root@2d941c5b9ca4:/mnt# ll
+bash: ll: command not found
+root@2d941c5b9ca4:/mnt# cd ..
+root@2d941c5b9ca4:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+PS C:\DockerTest\dockerfiletest2> docker cp C:\DockerTest\dockerfiletest2 dbabb6a2589b:/home/usr
+PS C:\DockerTest\dockerfiletest2> docker start -i pycont_20220602
+root@2d941c5b9ca4:/# cd /home/usr
+bash: cd: /home/usr: No such file or directory
+root@2d941c5b9ca4:/# cd /home
+root@2d941c5b9ca4:/home# exit
+exit
+PS C:\DockerTest\dockerfiletest2> docker cp C:\DockerTest\dockerfiletest2 dbabb6a2589b:/home/user
+PS C:\DockerTest\dockerfiletest2> docker start -i pycont_20220602
+root@2d941c5b9ca4:/# cd /home/user
+root@2d941c5b9ca4:/home/user# ls
+root@2d941c5b9ca4:/home/user# ll
+bash: ll: command not found
+root@2d941c5b9ca4:/home/user# exit
+exit
+PS C:\DockerTest\dockerfiletest2> docker cp C:\DockerTest\dockerfiletest2 2d941c5b9ca4:/home/user
+PS C:\DockerTest\dockerfiletest2> docker start -i pycont_20220602
+root@2d941c5b9ca4:/# cd /home/user
+root@2d941c5b9ca4:/home/user# ls
+dockerfiletest2
+root@2d941c5b9ca4:/home/user# ll
+root@2d941c5b9ca4:/home/user# ls -a
+.  ..  dockerfiletest2
+root@2d941c5b9ca4:/home/user# cd ..
+root@2d941c5b9ca4:/home# chmod 777 user
+root@2d941c5b9ca4:/home# cd user/
+root@2d941c5b9ca4:/home/user# ls
+dockerfiletest2
+root@2d941c5b9ca4:/home/user# ll
+bash: ll: command not found
+root@2d941c5b9ca4:/home/user# exit
+exit
+PS C:\DockerTest\dockerfiletest2> dir
+
+
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2022/06/02     15:06             39 Dockerfile
+-a----        2022/06/06     10:00        1233917 Graphillion-1.5.tar.gz
+
+
+PS C:\DockerTest\dockerfiletest2> docker cp C:\DockerTest\dockerfiletest2 2d941c5b9ca4:/home/user
+PS C:\DockerTest\dockerfiletest2> docker start -i pycont_20220602
+root@2d941c5b9ca4:/# cd /home/user
+root@2d941c5b9ca4:/home/user# ls
+dockerfiletest2
+root@2d941c5b9ca4:/home/user# exit
+exit
+PS C:\DockerTest\dockerfiletest3> docker build -t python3-file2:20220606 .
+[+] Building 11.9s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 121B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.1s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   5.0s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => ERROR [2/2] RUN python -m pip install graphillion:1.5                                                          6.6s
+------
+ > [2/2] RUN python -m pip install graphillion:1.5:
+#5 5.990 ERROR: Invalid requirement: 'graphillion:1.5'
+#5 6.382 You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
+------
+executor failed running [/bin/sh -c python -m pip install graphillion:1.5]: exit code: 1
+PS C:\DockerTest\dockerfiletest3> docker build -t python3-file2:20220606 .
+[+] Building 11.9s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 179B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   1.9s
+ => CACHED [1/3] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add9217  0.0s
+ => [2/3] RUN /usr/local/bin/python -m pip install --upgrade pip                                                   8.2s
+ => ERROR [3/3] RUN python -m pip install graphillion:1.5                                                          1.6s
+------
+ > [3/3] RUN python -m pip install graphillion:1.5:
+#6 1.390 ERROR: Invalid requirement: 'graphillion:1.5'
+------
+executor failed running [/bin/sh -c python -m pip install graphillion:1.5]: exit code: 1
+PS C:\DockerTest\dockerfiletest3> docker build -t python3-file2:20220606 .
+[+] Building 72.1s (7/7) FINISHED
+ => => transferring dockerfile: 175B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   1.9s
+ => [1/3] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add921766b36e8  0.0s
+ => CACHED [2/3] RUN /usr/local/bin/python -m pip install --upgrade pip                                            0.0s
+ => [3/3] RUN python -m pip install graphillion                                                                   69.2s
+ => exporting to image                                                                                             0.8s
+ => => exporting layers                                                                                            0.8s
+ => => writing image sha256:6aca31d6786438881faf978ad579c26aa9cdadb953ba3b2baaf52e293c4e7734                       0.0s
+ => => naming to docker.io/library/python3-file2:20220606                                                          0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+PS C:\DockerTest\dockerfiletest3> docker images
+REPOSITORY                TAG                  IMAGE ID       CREATED          SIZE
+python3-file2             20220606             6aca31d67864   45 seconds ago   948MB
+s390x-20220527            s390x-tag-20220527   458f29d9bf0c   10 days ago      938MB
+image_20220526            tag_20200526         7ea4c407b27f   11 days ago      1.33GB
+ubuntu                    latest               d2e4e1f51132   5 weeks ago      77.8MB
+ubuntu20.04lts_20220530   20.04_20220530       53df61775e88   5 weeks ago      72.8MB
+docker/getting-started    latest               cb90f98fd791   7 weeks ago      28.8MB
+python3-file              20220601             1f4a8da6ebdf   2 months ago     912MB
+PS C:\DockerTest\dockerfiletest3> docker run -it --name "py_gra_cont_20220606" python3-file2 /bin/bash
+Unable to find image 'python3-file2:latest' locally
+docker: Error response from daemon: pull access denied for python3-file2, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+PS C:\DockerTest\dockerfiletest3> docker run -it --name "py_gra_cont_20220606" 6aca31d67864 /bin/bash
+root@022032889d94:/# pytho3 -V
+bash: pytho3: command not found
+root@022032889d94:/# python3 -V
+Python 3.9.10
+root@022032889d94:/# graphillion -V
+bash: graphillion: command not found
+root@022032889d94:/# graphillion
+bash: graphillion: command not found
+root@022032889d94:/# pip list
+Package     Version
+----------- -------
+future      0.18.2
+Graphillion 1.5
+pip         22.1.2
+setuptools  58.1.0
+wheel       0.37.1
+root@022032889d94:/# cd /home/user
+bash: cd: /home/user: No such file or directory
+root@022032889d94:/# exit
+exit
+PS C:\DockerTest\dockerfiletest3> ls
+
+
+    ディレクトリ: C:\DockerTest\dockerfiletest3
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2022/06/06     10:36            136 Dockerfile
+-a----        2022/06/06     10:00        1233917 Graphillion-1.5.tar.gz
+
+
+PS C:\DockerTest\dockerfiletest3>
