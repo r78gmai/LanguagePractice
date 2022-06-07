@@ -1501,3 +1501,647 @@ Mode                 LastWriteTime         Length Name
 
 
 PS C:\DockerTest\dockerfiletest3>
+
+2022060701
+PS C:\DockerTest\dockerfiletest4> docker build -t python3-file4:2022060604 .
+[+] Building 120.0s (10/19)
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 611B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.1s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   4.5s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => [ 1/15] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add921766b36  0.0s
+ => [ 3/15] RUN python -m pip install networkx                                                                     9.1s
+ => [ 4/15] RUN python -m pip install matplotlib                                                                  19.5s
+ => [ 5/15] RUN python -m pip install graphillion                                                                 84.3s
+ => ERROR [ 6/15] RUN python -m pip install cyler                                                                  2.2s
+------
+ > [ 6/15] RUN python -m pip install cyler:
+#10 1.975 ERROR: Could not find a version that satisfies the requirement cyler (from versions: none)
+#10 1.976 ERROR: No matching distribution found for cyler
+------
+executor failed running [/bin/sh -c python -m pip install cyler]: exit code: 1
+PS C:\DockerTest\dockerfiletest4> docker build -t python3-file4:2022060604 .
+[+] Building 179.0s (19/19) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.3s
+ => => transferring dockerfile: 612B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.4s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   2.5s
+ => [ 1/15] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add921766b36  0.0s
+ => CACHED [ 2/15] RUN /usr/local/bin/python -m pip install --upgrade pip                                          0.0s
+ => [ 3/15] RUN python -m pip install cycler                                                                       2.7s
+ => [ 4/15] RUN python -m pip install future                                                                       5.8s
+ => [ 5/15] RUN python -m pip install kiwisolver                                                                   3.1s
+ => [ 6/15] RUN python -m pip install numpy                                                                       14.9s
+ => [ 7/15] RUN python -m pip install packaging                                                                    5.3s
+ => [ 8/15] RUN python -m pip install Pillow                                                                       5.3s
+ => [ 9/15] RUN python -m pip install pyparsing                                                                    2.3s
+ => [10/15] RUN python -m pip install python-dateutil                                                              3.2s
+ => [11/15] RUN python -m pip install setuptools                                                                   2.4s
+ => [12/15] RUN python -m pip install six                                                                          2.4s
+ => [13/15] RUN python -m pip install networkx                                                                     5.6s
+ => [14/15] RUN python -m pip install matplotlib                                                                  16.5s
+ => [15/15] RUN python -m pip install graphillion                                                                 98.3s
+ => exporting to image                                                                                             6.8s
+ => => exporting layers                                                                                            6.3s
+ => => writing image sha256:6a572cff54ffd2f7987cf7b3925a1a1c61db0556a2b1632fa7c1f3c2447cfa37                       0.0s
+ => => naming to docker.io/library/python3-file4:2022060604                                                        0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+PS C:\DockerTest\dockerfiletest4> docker images
+REPOSITORY                TAG                  IMAGE ID       CREATED          SIZE
+python3-file4             2022060604           6a572cff54ff   38 seconds ago   1.13GB
+python3-file2             20220606             6aca31d67864   4 hours ago      948MB
+s390x-20220527            s390x-tag-20220527   458f29d9bf0c   10 days ago      938MB
+ubuntu20.04lts_20220530   20.04_20220530       53df61775e88   5 weeks ago      72.8MB
+docker/getting-started    latest               cb90f98fd791   7 weeks ago      28.8MB
+python3-file              20220601             1f4a8da6ebdf   2 months ago     912MB
+PS C:\DockerTest\dockerfiletest4> docker run -it --name "py_lib1_cont_20220606" 6a572cff54ff /bin/bash
+root@3f5af250ce1d:/# pip -l
+
+Usage:
+  pip <command> [options]
+
+no such option: -l
+root@3f5af250ce1d:/# pip list
+Package         Version
+--------------- -------
+cycler          0.11.0
+fonttools       4.33.3
+future          0.18.2
+Graphillion     1.5
+kiwisolver      1.4.2
+matplotlib      3.5.2
+networkx        2.8.3
+numpy           1.22.4
+packaging       21.3
+Pillow          9.1.1
+pip             22.1.2
+pyparsing       3.0.9
+python-dateutil 2.8.2
+setuptools      58.1.0
+six             1.16.0
+wheel           0.37.1
+root@3f5af250ce1d:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@3f5af250ce1d:/# cd home
+root@3f5af250ce1d:/home# ls
+root@3f5af250ce1d:/home# mkdir python_test
+root@3f5af250ce1d:/home# cd python_test/
+root@3f5af250ce1d:/home/python_test# python3
+Python 3.9.10 (main, Mar  2 2022, 04:23:34)
+[GCC 10.2.1 20210110] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> exit
+Use exit() or Ctrl-D (i.e. EOF) to exit
+>>> exit()
+root@3f5af250ce1d:/home/python_test# vi test01.py
+bash: vi: command not found
+root@3f5af250ce1d:/home/python_test# exit
+exit
+PS C:\DockerTest\dockerfiletest4> docker cp C:\DockerTest\py 3f5af250ce1d:/home/python_test
+PS C:\DockerTest\dockerfiletest4> docker start -i 3f5af250ce1d
+root@3f5af250ce1d:/# cd /home/python_test/
+root@3f5af250ce1d:/home/python_test# ls
+py
+root@3f5af250ce1d:/home/python_test/py# ls
+graphillion_sample01.py
+root@3f5af250ce1d:/home/python_test/py# ./graphillion_sample01.py
+./graphillion_sample01.py: line 2: from: command not found
+import-im6.q16: unable to open X server `' @ error/import.c/ImportImageCommand/346.
+./graphillion_sample01.py: line 4: $'\r': command not found
+./graphillion_sample01.py: line 6: from: command not found
+./graphillion_sample01.py: line 7: $'\r': command not found
+./graphillion_sample01.py: line 8: syntax error near unexpected token `('
+'/graphillion_sample01.py: line 8: `universe = tl.grid(2, 2)
+root@3f5af250ce1d:/home/python_test/py# cat ./graphillion_sample01.py
+# 必要なモジュールのインポート
+from graphillion import GraphSet
+import graphillion.tutorial as tl
+
+# グリッドのサイズを指定
+from reportlab import xrange
+
+universe = tl.grid(2, 2)
+GraphSet.set_universe(universe)
+# tl.draw(universe)
+
+goal = 9  # ゴールの位置
+paths = GraphSet.paths(start, goal)
+print(len(paths))  # 12通りroot@3f5af250ce1d:/home/python_test/py# python
+Python 3.9.10 (main, Mar  2 2022, 04:23:34)
+[GCC 10.2.1 20210110] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from graphillion import GraphSet
+>>> import graphillion.tutorial as tl
+>>> from reportlab import xrange
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'reportlab'
+>>> GraphSet.set_universe(universe)
+>>> tl.draw(universe)
+>>> start = 1  # スタート位置
+>>> goal = 9  # ゴールの位置
+>>> paths = GraphSet.paths(start, goal)
+>>> print(len(paths))
+12
+>>> exit()
+root@3f5af250ce1d:/home/python_test/py# exit
+              NAMES
+3f5af250ce1d   6a572cff54ff             "/bin/bash"              46 minutes ago   Exited (0) 10 seconds ago                           py_lib1_cont_20220606
+022032889d94   6aca31d67864             "/bin/bash"              5 hours ago      Exited (1) About an hour ago                        py_gra_cont_20220606
+2d941c5b9ca4   1f4a8da6ebdf             "/bin/bash"              4 days ago       Exited (0) 5 hours ago                              pycont_20220602
+dbabb6a2589b   53df61775e88             "/bin/bash"              6 days ago       Exited (127) 4 days ago                             cont_2022053003
+ed4783cfa9ec   53df61775e88             "/bin/bash"              7 days ago       Exited (0) 7 days ago                 6a520507af50   ubuntu                   "/bin/bash"              7 days ago       Exited (0) 7 days ago                               cont_2022053001
+a89f7b5ce8a0   d2e4e1f51132             "bash"                   7 days ago       Created                                             lucid_kapitsa
+4c7e8443d582   53df61775e88             "/bin/echo Hello-wor…"   7 days ago       Exited (0) 7 days ago                               elegant_mestorf
+970719f15bdd   d2e4e1f51132             "bash"                   7 days ago       Exited (0) 7 days ago                               hopeful_mclean
+3364f0630c9f   docker/getting-started   "/docker-entrypoint.…"   10 days ago      Up 7 days                      0.0.0.0:80->80/tcp   brave_raman
+PS C:\DockerTest\dockerfiletest4> docker export 3f5af250ce1d > export01.tar
+PS C:\DockerTest\dockerfiletest4> ls
+
+
+    ディレクトリ: C:\DockerTest\dockerfiletest4
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2022/06/06     14:18            573 Dockerfile
+-a----        2022/06/06     15:22     2102706712 export01.tar
+-a----        2022/06/06     10:00        1233917 Graphillion-1.5.tar.gz
+
+
+PS C:\DockerTest\dockerfiletest4> docker images
+REPOSITORY                TAG                  IMAGE ID       CREATED        SIZE
+python3-file4             2022060604           6a572cff54ff   2 hours ago    1.13GB
+python3-file2             20220606             6aca31d67864   6 hours ago    948MB
+s390x-20220527            s390x-tag-20220527   458f29d9bf0c   10 days ago    938MB
+image_20220526            tag_20200526         7ea4c407b27f   11 days ago    1.33GB
+ubuntu                    latest               d2e4e1f51132   5 weeks ago    77.8MB
+ubuntu20.04lts_20220530   20.04_20220530       53df61775e88   5 weeks ago    72.8MB
+docker/getting-started    latest               cb90f98fd791   7 weeks ago    28.8MB
+python3-file              20220601             1f4a8da6ebdf   3 months ago   912MB
+PS C:\DockerTest\dockerfiletest4> docker save -o python_11lib 6a572cff54ff
+PS C:\DockerTest\dockerfiletest4> cd ..\dockerfiletest5
+PS C:\DockerTest\dockerfiletest5> ls
+
+
+    ディレクトリ: C:\DockerTest\dockerfiletest5
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2022/06/06     16:58           1184 Dockerfile
+
+PS C:\DockerTest\dockerfiletest5> docker build -t python3-file5:2022060605 .
+[+] Building 138.8s (37/37) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 1.22kB                                                                             0.1s
+ => [internal] load .dockerignore                                                                                  0.1s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   4.7s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => [ 1/32] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add921766b36  0.0s
+ => CACHED [ 4/32] RUN python -m pip install future                                                                0.0s
+ => CACHED [ 5/32] RUN python -m pip install kiwisolver                                                            0.0s
+ => CACHED [ 6/32] RUN python -m pip install numpy                                                                 0.0s
+ => CACHED [ 7/32] RUN python -m pip install packaging                                                             0.0s
+ => CACHED [ 8/32] RUN python -m pip install Pillow                                                                0.0s
+ => CACHED [ 9/32] RUN python -m pip install pyparsing                                                             0.0s
+ => CACHED [10/32] RUN python -m pip install python-dateutil                                                       0.0s
+ => CACHED [11/32] RUN python -m pip install setuptools                                                            0.0s
+ => CACHED [12/32] RUN python -m pip install six                                                                   0.0s
+ => [13/32] RUN python -m pip install cx_Oracle                                                                    7.6s
+ => [14/32] RUN python -m pip install pandas                                                                      13.5s
+ => [15/32] RUN python -m pip install pytz                                                                         2.2s
+ => [16/32] RUN python -m pip install jdcal                                                                        2.1s
+ => [17/32] RUN python -m pip install et_xmlfile                                                                   1.8s
+ => [18/32] RUN python -m pip install openpyxl                                                                     2.4s
+ => [19/32] RUN python -m pip install xlrd                                                                         2.0s
+ => [20/32] RUN python -m pip install black                                                                        3.3s
+ => [21/32] RUN python -m pip install flake8                                                                       2.6s
+ => [22/32] RUN python -m pip install click                                                                        1.7s
+ => [23/32] RUN python -m pip install colorama                                                                     2.0s
+ => [24/32] RUN python -m pip install mypy_extensions                                                              1.6s
+ => [25/32] RUN python -m pip install pathspec                                                                     1.6s
+ => [27/32] RUN python -m pip install tomli                                                                        1.5s
+ => [28/32] RUN python -m pip install typing_extensions                                                            1.7s
+ => [29/32] RUN python -m pip install PyYAML                                                                       2.2s
+ => [30/32] RUN python -m pip install networkx                                                                     4.4s
+ => [31/32] RUN python -m pip install matplotlib                                                                   8.5s
+ => [32/32] RUN python -m pip install graphillion                                                                 65.6s
+ => exporting to image                                                                                             3.4s
+ => => exporting layers                                                                                            2.9s
+ => => writing image sha256:a9aca1db9f3c854cd0df78465ee50935a8752327e078bf0fae56bad9d6b54d07                       0.0s
+ => => naming to docker.io/library/python3-file5:2022060605                                                        0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+PS C:\DockerTest\dockerfiletest5> docker images
+REPOSITORY                TAG                  IMAGE ID       CREATED          SIZE
+python3-file5             2022060605           a9aca1db9f3c   11 minutes ago   1.21GB
+python3-file4             2022060604           6a572cff54ff   3 hours ago      1.13GB
+python3-file2             20220606             6aca31d67864   7 hours ago      948MB
+s390x-20220527            s390x-tag-20220527   458f29d9bf0c   10 days ago      938MB
+image_20220526            tag_20200526         7ea4c407b27f   11 days ago      1.33GB
+ubuntu                    latest               d2e4e1f51132   5 weeks ago      77.8MB
+ubuntu20.04lts_20220530   20.04_20220530       53df61775e88   5 weeks ago      72.8MB
+docker/getting-started    latest               cb90f98fd791   7 weeks ago      28.8MB
+python3-file              20220601             1f4a8da6ebdf   3 months ago     912MB
+PS C:\DockerTest\dockerfiletest5> cd ..\dockerfiletest6
+PS C:\DockerTest\dockerfiletest6> docker build -t python3-file6:2022060606 .
+[+] Building 7.0s (6/37)
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 1.25kB                                                                             0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   4.5s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => CACHED [ 1/33] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add92  0.0s
+ => ERROR [ 2/33] RUN apt-get install -y vi less                                                                   2.2s
+------
+ > [ 2/33] RUN apt-get install -y vi less:
+#6 2.111 Reading package lists...
+#6 2.184 Building dependency tree...
+#6 2.187 Reading state information...
+#6 2.198 Package less is not available, but is referred to by another package.
+#6 2.198 This may mean that the package is missing, has been obsoleted, or
+#6 2.198 is only available from another source
+#6 2.198
+#6 2.200 E: Unable to locate package vi
+#6 2.200 E: Package 'less' has no installation candidate
+------
+executor failed running [/bin/sh -c apt-get install -y vi less]: exit code: 100
+PS C:\DockerTest\dockerfiletest6> docker build -t python3-file6:2022060606 .
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 1.26kB                                                                             0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   3.1s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => CACHED [ 1/33] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add92  0.0s
+ => ERROR [ 2/33] RUN /bin/sh -c apt-get install -y vi                                                             0.8s
+------
+ > [ 2/33] RUN /bin/sh -c apt-get install -y vi:
+#6 0.771 apt 2.2.4 (amd64)
+#6 0.771 Usage: apt-get [options] command
+#6 0.771        apt-get [options] install|remove pkg1 [pkg2 ...]
+#6 0.771        apt-get [options] source pkg1 [pkg2 ...]
+#6 0.771
+#6 0.771 apt-get is a command line interface for retrieval of packages
+#6 0.771 and information about them from authenticated sources and
+#6 0.771 for installation, upgrade and removal of packages together
+#6 0.771 with their dependencies.
+#6 0.771
+#6 0.771 Most used commands:
+#6 0.771   upgrade - Perform an upgrade
+#6 0.771   install - Install new packages (pkg is libc6 not libc6.deb)
+#6 0.771   reinstall - Reinstall packages (pkg is libc6 not libc6.deb)
+#6 0.771   remove - Remove packages
+#6 0.771   purge - Remove packages and config files
+#6 0.771   autoremove - Remove automatically all unused packages
+#6 0.771   dist-upgrade - Distribution upgrade, see apt-get(8)
+#6 0.771   dselect-upgrade - Follow dselect selections
+#6 0.771   build-dep - Configure build-dependencies for source packages
+#6 0.771   satisfy - Satisfy dependency strings
+#6 0.771   clean - Erase downloaded archive files
+#6 0.771   autoclean - Erase old downloaded archive files
+#6 0.771   check - Verify that there are no broken dependencies
+#6 0.771   source - Download source archives
+#6 0.771   download - Download the binary package into the current directory
+#6 0.771   changelog - Download and display the changelog for the given package
+#6 0.771
+#6 0.771 Configuration options and syntax is detailed in apt.conf(5).
+#6 0.771 Information about how to configure sources can be found in sources.list(5).
+#6 0.771 Package and version choices can be expressed via apt_preferences(5).
+#6 0.771 Security details are available in apt-secure(8).
+#6 0.771                                         This APT has Super Cow Powers.
+------
+executor failed running [/bin/sh -c /bin/sh -c apt-get install -y vi]: exit code: 1
+PS C:\DockerTest\dockerfiletest6> docker build -t python3-file6:2022060606 .
+[+] Building 4.2s (5/36)
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 1.26kB                                                                             0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   1.9s
+ => CACHED [ 1/33] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add92  0.0s
+ => ERROR [ 2/33] RUN apt-get install -y vim less                                                                  1.9s
+------
+ > [ 2/33] RUN apt-get install -y vim less:
+#5 1.473 Reading package lists...
+#5 1.538 Building dependency tree...
+#5 1.541 Reading state information...
+#5 1.550 Package less is not available, but is referred to by another package.
+#5 1.550 This may mean that the package is missing, has been obsoleted, or
+#5 1.550 is only available from another source
+#5 1.550
+#5 1.553 E: Unable to locate package vim
+#5 1.559 E: Package 'less' has no installation candidate
+------
+executor failed running [/bin/sh -c apt-get install -y vim less]: exit code: 100
+PS C:\DockerTest\dockerfiletest6> docker build -t python3-file6:2022060606 .
+[+] Building 3.9s (6/37)
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 1.25kB                                                                             0.0s
+ => [internal] load .dockerignore                                                                                  0.1s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   2.9s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => CACHED [ 1/33] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add92  0.0s
+ => ERROR [ 2/33] RUN apt-get install -y vim                                                                       0.7s
+------
+ > [ 2/33] RUN apt-get install -y vim:
+#6 0.597 Reading package lists...
+#6 0.624 Building dependency tree...
+#6 0.626 Reading state information...
+#6 0.632 E: Unable to locate package vim
+------
+executor failed running [/bin/sh -c apt-get install -y vim]: exit code: 100
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 1.26kB                                                                             0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   1.9s
+ => CACHED [ 1/33] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add92  0.0s
+ => ERROR [ 2/33] RUN /bin/sh -c apt-get install -y vim                                                            0.7s
+------
+ > [ 2/33] RUN /bin/sh -c apt-get install -y vim:
+#5 0.680 apt 2.2.4 (amd64)
+#5 0.681 Usage: apt-get [options] command
+#5 0.681        apt-get [options] install|remove pkg1 [pkg2 ...]
+#5 0.681        apt-get [options] source pkg1 [pkg2 ...]
+#5 0.681
+#5 0.681 apt-get is a command line interface for retrieval of packages
+#5 0.681 and information about them from authenticated sources and
+#5 0.681 for installation, upgrade and removal of packages together
+#5 0.681 with their dependencies.
+#5 0.681
+#5 0.682 Most used commands:
+#5 0.682   update - Retrieve new lists of packages
+#5 0.682   upgrade - Perform an upgrade
+#5 0.682   install - Install new packages (pkg is libc6 not libc6.deb)
+#5 0.682   reinstall - Reinstall packages (pkg is libc6 not libc6.deb)
+#5 0.682   remove - Remove packages
+#5 0.682   purge - Remove packages and config files
+#5 0.682   autoremove - Remove automatically all unused packages
+#5 0.682   dist-upgrade - Distribution upgrade, see apt-get(8)
+#5 0.682   dselect-upgrade - Follow dselect selections
+#5 0.682   build-dep - Configure build-dependencies for source packages
+#5 0.682   satisfy - Satisfy dependency strings
+#5 0.682   clean - Erase downloaded archive files
+#5 0.682   autoclean - Erase old downloaded archive files
+#5 0.682   check - Verify that there are no broken dependencies
+#5 0.682   source - Download source archives
+#5 0.682   download - Download the binary package into the current directory
+#5 0.682   changelog - Download and display the changelog for the given package
+#5 0.682
+#5 0.682 See apt-get(8) for more information about the available commands.
+#5 0.682 Configuration options and syntax is detailed in apt.conf(5).
+#5 0.682 Information about how to configure sources can be found in sources.list(5).
+#5 0.682 Package and version choices can be expressed via apt_preferences(5).
+#5 0.682 Security details are available in apt-secure(8).
+#5 0.682                                         This APT has Super Cow Powers.
+------
+executor failed running [/bin/sh -c /bin/sh -c apt-get install -y vim]: exit code: 1
+PS C:\DockerTest\dockerfiletest6>
+PS C:\DockerTest\dockerfiletest6> docker build -t python3-file6:2022060606 .
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 1.26kB                                                                             0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   3.4s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => CACHED [ 1/33] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add92  0.0s
+ => ERROR [ 2/33] RUN /bin/sh -c apt-get -y install vim                                                            2.5s
+------
+ > [ 2/33] RUN /bin/sh -c apt-get -y install vim:
+#6 2.455 apt 2.2.4 (amd64)
+#6 2.455 Usage: apt-get [options] command
+#6 2.455        apt-get [options] install|remove pkg1 [pkg2 ...]
+#6 2.455        apt-get [options] source pkg1 [pkg2 ...]
+#6 2.455
+#6 2.455 apt-get is a command line interface for retrieval of packages
+#6 2.455 for installation, upgrade and removal of packages together
+#6 2.455 with their dependencies.
+#6 2.455
+#6 2.455 Most used commands:
+#6 2.455   update - Retrieve new lists of packages
+#6 2.455   upgrade - Perform an upgrade
+#6 2.455   install - Install new packages (pkg is libc6 not libc6.deb)
+#6 2.455   reinstall - Reinstall packages (pkg is libc6 not libc6.deb)
+#6 2.455   remove - Remove packages
+#6 2.455   purge - Remove packages and config files
+#6 2.455   autoremove - Remove automatically all unused packages
+#6 2.455   dist-upgrade - Distribution upgrade, see apt-get(8)
+#6 2.455   dselect-upgrade - Follow dselect selections
+#6 2.455   build-dep - Configure build-dependencies for source packages
+#6 2.455   satisfy - Satisfy dependency strings
+#6 2.455   clean - Erase downloaded archive files
+#6 2.455   check - Verify that there are no broken dependencies
+#6 2.455   source - Download source archives
+#6 2.455   download - Download the binary package into the current directory
+#6 2.455   changelog - Download and display the changelog for the given package
+#6 2.455
+#6 2.455 See apt-get(8) for more information about the available commands.
+#6 2.455 Configuration options and syntax is detailed in apt.conf(5).
+#6 2.455 Information about how to configure sources can be found in sources.list(5).
+#6 2.455 Package and version choices can be expressed via apt_preferences(5).
+#6 2.455 Security details are available in apt-secure(8).
+#6 2.455                                         This APT has Super Cow Powers.
+------
+executor failed running [/bin/sh -c /bin/sh -c apt-get -y install vim]: exit code: 1
+PS C:\DockerTest\dockerfiletest6> docker build -t python3-file6:2022060606 .
+[+] Building 2.8s (5/36)
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   1.9s
+ => CACHED [ 1/33] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add92  0.0s
+ => ERROR [ 2/33] RUN apt-get -y install vim                                                                       0.8s
+------
+ > [ 2/33] RUN apt-get -y install vim:
+#5 0.667 Reading package lists...
+#5 0.713 Building dependency tree...
+#5 0.716 Reading state information...
+#5 0.724 E: Unable to locate package vim
+------
+executor failed running [/bin/sh -c apt-get -y install vim]: exit code: 100
+PS C:\DockerTest\dockerfiletest6> docker build -t python3-file6:2022060606 .
+[+] Building 3.4s (5/36)
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 1.25kB                                                                             0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => CACHED [ 1/33] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add92  0.0s
+ => ERROR [ 2/33] RUN apt-get install vim                                                                          0.8s
+------
+ > [ 2/33] RUN apt-get install vim:
+#5 0.638 Reading package lists...
+#5 0.684 Building dependency tree...
+#5 0.690 Reading state information...
+#5 0.698 E: Unable to locate package vim
+------
+executor failed running [/bin/sh -c apt-get install vim]: exit code: 100
+PS C:\DockerTest\dockerfiletest6> docker build -t python3-file6:2022060606 .
+[+] Building 2.8s (5/36)
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 1.25kB                                                                             0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   2.0s
+ => CACHED [ 1/33] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add92  0.0s
+ => ERROR [ 2/33] RUN apt-get install vi                                                                           0.7s
+------
+ > [ 2/33] RUN apt-get install vi:
+#5 0.579 Reading package lists...
+#5 0.602 Building dependency tree...
+#5 0.605 Reading state information...
+#5 0.610 E: Unable to locate package vi
+------
+executor failed running [/bin/sh -c apt-get install vi]: exit code: 100
+PS C:\DockerTest\dockerfiletest6> docker build -t python3-file6:2022060606 .
+[+] Building 3.9s (5/36)
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 1.25kB                                                                             0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   2.3s
+ => CACHED [ 1/33] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add92  0.0s
+ => ERROR [ 2/33] RUN apt install vim -y                                                                           1.4s
+------
+ > [ 2/33] RUN apt install vim -y:
+#5 1.141
+#5 1.141 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+#5 1.141
+#5 1.163 Reading package lists...
+#5 1.227 Building dependency tree...
+#5 1.233 Reading state information...
+#5 1.249 E: Unable to locate package vim
+------
+executor failed running [/bin/sh -c apt install vim -y]: exit code: 100
+PS C:\DockerTest\dockerfiletest6> docker build -t python3-file6:2022060606 .
+[+] Building 4.3s (6/37)
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 1.27kB                                                                             0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   3.1s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => CACHED [ 1/33] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add92  0.0s
+ => ERROR [ 2/33] RUN /usr/local/bin/python apt-get install vim -y                                                 0.9s
+------
+ > [ 2/33] RUN /usr/local/bin/python apt-get install vim -y:
+#6 0.881 /usr/local/bin/python: can't open file '//apt-get': [Errno 2] No such file or directory
+------
+PS C:\DockerTest\dockerfiletest6> docker build -t python3-file6:2022060606 .
+[+] Building 249.0s (38/38) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 1.27kB                                                                             0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.9.10                                                   1.9s
+ => CACHED [ 1/34] FROM docker.io/library/python:3.9.10@sha256:3aae21920963df3205fba69826cc07fcf2fad91f9e062add92  0.0s
+ => [ 2/34] RUN apt-get update                                                                                     5.1s
+ => [ 3/34] RUN apt-get install vim -y                                                                             8.8s
+ => [ 4/34] RUN /usr/local/bin/python -m pip install --upgrade pip                                                10.7s
+ => [ 7/34] RUN python -m pip install kiwisolver                                                                   2.2s
+ => [ 8/34] RUN python -m pip install numpy                                                                        8.0s
+ => [ 9/34] RUN python -m pip install packaging                                                                    2.4s
+ => [10/34] RUN python -m pip install Pillow                                                                       3.7s
+ => [11/34] RUN python -m pip install pyparsing                                                                    1.7s
+ => [12/34] RUN python -m pip install python-dateutil                                                              2.2s
+ => [13/34] RUN python -m pip install setuptools                                                                   1.6s
+ => [14/34] RUN python -m pip install six                                                                          2.0s
+ => [15/34] RUN python -m pip install cx_Oracle                                                                    2.8s
+ => [16/34] RUN python -m pip install pandas                                                                      13.1s
+ => [17/34] RUN python -m pip install pytz                                                                         1.8s
+ => [19/34] RUN python -m pip install et_xmlfile                                                                   2.3s
+ => [20/34] RUN python -m pip install openpyxl                                                                     3.1s
+ => [21/34] RUN python -m pip install xlrd                                                                         3.9s
+ => [22/34] RUN python -m pip install black                                                                        6.9s
+ => [23/34] RUN python -m pip install flake8                                                                       4.2s
+ => [24/34] RUN python -m pip install click                                                                        2.4s
+ => [25/34] RUN python -m pip install colorama                                                                     2.9s
+ => [26/34] RUN python -m pip install mypy_extensions                                                              2.5s
+ => [27/34] RUN python -m pip install pathspec                                                                     2.3s
+ => [28/34] RUN python -m pip install platformdirs                                                                 2.5s
+ => [29/34] RUN python -m pip install tomli                                                                        2.3s
+ => [30/34] RUN python -m pip install typing_extensions                                                            3.2s
+ => [31/34] RUN python -m pip install PyYAML                                                                       3.5s
+ => [32/34] RUN python -m pip install networkx                                                                     6.7s
+ => [33/34] RUN python -m pip install matplotlib                                                                  13.3s
+ => [34/34] RUN python -m pip install graphillion                                                                 93.0s
+ => exporting to image                                                                                            14.8s
+ => => exporting layers                                                                                           14.3s
+ => => writing image sha256:e4cbb458fabc66df2755cf0b14806a658a2ac53fb9a034188c8623c6d090a642                       0.1s
+ => => naming to docker.io/library/python3-file6:2022060606                                                        0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+PS C:\DockerTest\dockerfiletest6> docker images
+REPOSITORY                TAG                  IMAGE ID       CREATED              SIZE
+python3-file6             2022060606           e4cbb458fabc   About a minute ago   1.27GB
+python3-file5             2022060605           a9aca1db9f3c   About an hour ago    1.21GB
+python3-file4             2022060604           6a572cff54ff   4 hours ago          1.13GB
+python3-file2             20220606             6aca31d67864   8 hours ago          948MB
+s390x-20220527            s390x-tag-20220527   458f29d9bf0c   10 days ago          938MB
+image_20220526            tag_20200526         7ea4c407b27f   12 days ago          1.33GB
+ubuntu                    latest               d2e4e1f51132   5 weeks ago          77.8MB
+ubuntu20.04lts_20220530   20.04_20220530       53df61775e88   5 weeks ago          72.8MB
+docker/getting-started    latest               cb90f98fd791   7 weeks ago          28.8MB
+python3-file              20220601             1f4a8da6ebdf   3 months ago         912MB
+PS C:\DockerTest\dockerfiletest6> docker save -o py_27lib.tar e4cbb458fabc
+PS C:\DockerTest\dockerfiletest6> ls
+
+
+    ディレクトリ: C:\DockerTest\dockerfiletest6
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        2022/06/06     18:05           1232 Dockerfile
+-a----        2022/06/07     10:34     1300372480 py_27lib.tar
+
+
+PS C:\DockerTest\dockerfiletest6> cat .\Dockerfile
+FROM python:3.9.10
+
+RUN apt-get update
+RUN apt-get install vim -y
+RUN /usr/local/bin/python -m pip install --upgrade pip
+
+RUN python -m pip install cycler
+RUN python -m pip install future
+RUN python -m pip install kiwisolver
+RUN python -m pip install numpy
+RUN python -m pip install packaging
+RUN python -m pip install Pillow
+RUN python -m pip install pyparsing
+RUN python -m pip install python-dateutil
+RUN python -m pip install setuptools
+RUN python -m pip install six
+
+RUN python -m pip install cx_Oracle
+RUN python -m pip install pandas
+RUN python -m pip install pytz
+RUN python -m pip install jdcal
+RUN python -m pip install et_xmlfile
+RUN python -m pip install openpyxl
+RUN python -m pip install xlrd
+RUN python -m pip install black
+RUN python -m pip install flake8
+RUN python -m pip install click
+RUN python -m pip install colorama
+RUN python -m pip install mypy_extensions
+RUN python -m pip install pathspec
+RUN python -m pip install platformdirs
+RUN python -m pip install tomli
+RUN python -m pip install typing_extensions
+RUN python -m pip install PyYAML
+
+RUN python -m pip install networkx
+RUN python -m pip install matplotlib
+RUN python -m pip install graphillion
+
+CMD ["/bin/bash"]
+PS C:\DockerTest\dockerfiletest6>
