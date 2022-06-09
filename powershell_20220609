@@ -1,0 +1,66 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+                                                                                                                        新しいクロスプラットフォームの PowerShell をお試しください https://aka.ms/pscore6                                                                                                                                                               PS C:\WINDOWS\system32> cd ..                                                                                           PS C:\WINDOWS> cd ..                                                                                                    PS C:\> Invoke-WebRequest https://download.docker.com/win/static/stable/x86_64/docker-17.06.0-ce.zip -UseBasicParsing -OutFile docker.zip
+PS C:\> Expand-Archive docker.zip -DestinationPath $Env:ProgramFiles
+PS C:\> Remove-Item -Force docker.zip
+PS C:\> dockerd --register-service
+dockerd : 用語 'dockerd' は、コマンドレット、関数、スクリプト ファイル、または操作可能なプログラムの名前として認識され
+ません。名前が正しく記述されていることを確認し、パスが含まれている場合はそのパスが正しいことを確認してから、再試行して
+ください。
+発生場所 行:1 文字:1
++ dockerd --register-service
++ ~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (dockerd:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\> .\dockerd --register-service
+.\dockerd : 用語 '.\dockerd' は、コマンドレット、関数、スクリプト ファイル、または操作可能なプログラムの名前として認識
+されません。名前が正しく記述されていることを確認し、パスが含まれている場合はそのパスが正しいことを確認してから、再試行
+してください。
+発生場所 行:1 文字:1
++ .\dockerd --register-service
++ ~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (.\dockerd:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\> cd C:\Program Files\Docker
+Set-Location : 引数 'Files\Docker' を受け入れる位置指定パラメーターが見つかりません。
+発生場所 行:1 文字:1
++ cd C:\Program Files\Docker
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-Location]、ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\> cd "C:\Program Files\Docker"
+PS C:\Program Files\Docker> dockerd --register-service
+dockerd : 用語 'dockerd' は、コマンドレット、関数、スクリプト ファイル、または操作可能なプログラムの名前として認識され
+ません。名前が正しく記述されていることを確認し、パスが含まれている場合はそのパスが正しいことを確認してから、再試行して
+ください。
+発生場所 行:1 文字:1
++ dockerd --register-service
++ ~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (dockerd:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+
+Suggestion [3,General]: コマンド dockerd は見つかりませんでしたが、現在の場所に存在します。Windows PowerShell は、既定では、現在の場所からコマンドを読み込みません。このコマンドを信頼する場合は、".\dockerd" と入力してください。詳細については、"get-help about_Command_Precedence" と入力してヘルプを参照してください。
+PS C:\Program Files\Docker> .\dockerd --register-service
+PS C:\Program Files\Docker> Start-Service docker
+PS C:\Program Files\Docker> docker run hello-world:nanoserver
+docker : 用語 'docker' は、コマンドレット、関数、スクリプト ファイル、または操作可能なプログラムの名前として認識されま
+せん。名前が正しく記述されていることを確認し、パスが含まれている場合はそのパスが正しいことを確認してから、再試行してく
+ださい。
+発生場所 行:1 文字:1
++ docker run hello-world:nanoserver
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (docker:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+
+Suggestion [3,General]: コマンド docker は見つかりませんでしたが、現在の場所に存在します。Windows PowerShell は、既定で は、現在の場所からコマンドを読み込みません。このコマンドを信頼する場合は、".\docker" と入力してください。詳細については 、"get-help about_Command_Precedence" と入力してヘルプを参照してください。
+PS C:\Program Files\Docker> .\docker run hello-world:nanoserver
+C:\Program Files\Docker\docker.exe: error during connect: Post http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.30/containers/create: open //./pipe/docker_engine: The system cannot find the file specified. In the default daemon configuration on Windows, the docker client must be run elevated to connect. This error may also indicate that the docker daemon is not running.
+See 'C:\Program Files\Docker\docker.exe run --help'.
+PS C:\Program Files\Docker> .\docker images
+error during connect: Get http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.30/images/json: open //./pipe/docker_engine: The system cannot find the file specified. In the default daemon configuration on Windows, the docker client must be run elevated to connect. This error may also indicate that the docker daemon is not running.
+PS C:\Program Files\Docker>
