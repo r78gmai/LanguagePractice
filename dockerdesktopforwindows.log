@@ -2189,3 +2189,303 @@ typing_extensions 4.2.0
 wheel             0.37.1
 xlrd              2.0.1
 root@a62e31b47339:/#
+
+20220614
+root@a62e31b47339:/# exit
+PS C:\DockerTest\dockerfiletest6> cd ..\dockerfiletest7
+PS C:\DockerTest\dockerfiletest7> docker build -t ubuntu20.04-python3.9:20220607 .
+[+] Building 14.6s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.2s
+ => => transferring dockerfile: 258B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.1s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:20.04                                                    5.9s
+ => [auth] library/ubuntu:pull token for registry-1.docker.io                                                      0.0s
+ => [1/2] FROM docker.io/library/ubuntu:20.04@sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4f010180  7.1s
+ => => resolve docker.io/library/ubuntu:20.04@sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4f010180  0.0s
+ => => sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4f010180dc19 1.42kB / 1.42kB                     0.0s
+ => => sha256:b2339eee806d44d6a8adc0a790f824fb71f03366dd754d400316ae5a7e3ece3e 529B / 529B                         0.0s
+ => => sha256:20fffa419e3aaca519dad480b21e86d9bcfbc7795abf9419adc5adce1198c95e 1.46kB / 1.46kB                     0.0s
+ => => extracting sha256:d7bfe07ed8476565a440c2113cc64d7c0409dba8ef761fb3ec019d7e6b5952df                          2.8s
+ => ERROR [2/2] RUN apt-get install python:3.9.10                                                                  1.2s
+------
+ > [2/2] RUN apt-get install python:3.9.10:
+#6 0.675 Reading package lists...
+#6 0.714 Building dependency tree...
+#6 0.716 Reading state information...
+#6 0.716 E: Unable to locate package python:3.9.10
+#6 0.716 E: Couldn't find any package by glob 'python:3.9.10'
+#6 0.716 E: Couldn't find any package by regex 'python:3.9.10'
+------
+executor failed running [/bin/sh -c apt-get install python:3.9.10]: exit code: 100
+[+] Building 56.4s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 257B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:20.04                                                    2.2s
+ => CACHED [1/3] FROM docker.io/library/ubuntu:20.04@sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4  0.0s
+ => [2/3] RUN apt-get update                                                                                      50.8s
+ => ERROR [3/3] RUN apt-get install python:3.9.10                                                                  3.2s
+------
+ > [3/3] RUN apt-get install python:3.9.10:
+#6 0.887 Reading package lists...
+#6 2.645 Building dependency tree...
+#6 3.022 Reading state information...
+#6 3.194 E: Unable to locate package python:3.9.10
+#6 3.194 E: Couldn't find any package by glob 'python:3.9.10'
+#6 3.194 E: Couldn't find any package by regex 'python:3.9.10'
+------
+executor failed running [/bin/sh -c apt-get install python:3.9.10]: exit code: 100
+[+] Building 3.8s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 259B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:20.04                                                    3.5s
+ => [auth] library/ubuntu:pull token for registry-1.docker.io                                                      0.0s
+ => CACHED [1/1] FROM docker.io/library/ubuntu:20.04@sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4  0.0s
+ => exporting to image                                                                                             0.0s
+ => => exporting layers                                                                                            0.0s
+ => => writing image sha256:f554b07f2f0d453367f3748e5096d9adac2db80d8af6273c6b2580c9b2469621                       0.0s
+ => => naming to docker.io/library/ubuntu20.04-python3.9:20220607                                                  0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+PS C:\DockerTest\dockerfiletest7> docker images
+REPOSITORY                TAG                  IMAGE ID       CREATED        SIZE
+ubuntu20.04-python3.9     20220607             f554b07f2f0d   11 hours ago   72.8MB
+python3-file6             2022060606           e4cbb458fabc   24 hours ago   1.27GB
+python3-file4             2022060604           6a572cff54ff   28 hours ago   1.13GB
+python3-file2             20220606             6aca31d67864   32 hours ago   948MB
+s390x-20220527            s390x-tag-20220527   458f29d9bf0c   12 days ago    938MB
+image_20220526            tag_20200526         7ea4c407b27f   13 days ago    1.33GB
+ubuntu                    latest               d2e4e1f51132   5 weeks ago    77.8MB
+ubuntu20.04lts_20220530   20.04_20220530       53df61775e88   5 weeks ago    72.8MB
+docker/getting-started    latest               cb90f98fd791   8 weeks ago    28.8MB
+python3-file              20220601             1f4a8da6ebdf   3 months ago   912MB
+PS C:\DockerTest\dockerfiletest7> docker run -it --name "ubuntu_cont_20220607" f554b07f2f0d /bin/bash
+root@df37ff8c8b84:/# cat /etc/os-release
+NAME="Ubuntu"
+VERSION="20.04.4 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.4 LTS"
+VERSION_ID="20.04"
+HOME_URL="https://www.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
+root@df37ff8c8b84:/# python -V
+bash: python: command not found
+root@df37ff8c8b84:/# python
+bash: python: command not found
+root@df37ff8c8b84:/# exit
+exit
+PS C:\DockerTest\dockerfiletest7> docker build -t ubuntu20.04-python:2022060702 .
+[+] Building 3.8s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:20.04                                                    2.9s
+ => [auth] library/ubuntu:pull token for registry-1.docker.io                                                      0.0s
+ => CACHED [1/2] FROM docker.io/library/ubuntu:20.04@sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4  0.0s
+ => ERROR [2/2] RUN apt-get install python                                                                         0.7s
+------
+ > [2/2] RUN apt-get install python:
+#6 0.585 Reading package lists...
+#6 0.616 Building dependency tree...
+#6 0.617 Reading state information...
+#6 0.619 E: Unable to locate package python
+------
+executor failed running [/bin/sh -c apt-get install python]: exit code: 100
+PS C:\DockerTest\dockerfiletest7> ^C
+PS C:\DockerTest\dockerfiletest7> docker build -t ubuntu20.04-python3.6:2022060702 .
+[+] Building 637.3s (9/9) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 609B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.1s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:20.04                                                    3.7s
+ => [auth] library/ubuntu:pull token for registry-1.docker.io                                                      0.0s
+ => CACHED [1/5] FROM docker.io/library/ubuntu:20.04@sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4  0.0s
+ => [2/5] RUN apt-get update -y && apt-get install -yq wget build-essential gcc zlib1g-dev                       312.5s
+ => [3/5] WORKDIR /root/                                                                                           0.7s
+ => [4/5] RUN wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz         && tar zxf Python-3.6.0.tgz  313.3s
+ => exporting to image                                                                                             6.4s
+ => => exporting layers                                                                                            6.3s
+ => => writing image sha256:dda92371d257fe3bea816a643169cab4f0802696923e04821f8c1a2cd45bc307                       0.0s
+ => => naming to docker.io/library/ubuntu20.04-python3.6:2022060702                                                0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+PS C:\DockerTest\dockerfiletest7> docker images
+REPOSITORY                TAG                  IMAGE ID       CREATED          SIZE
+ubuntu20.04-python3.6     2022060702           dda92371d257   35 seconds ago   793MB
+ubuntu20.04-python3.9     20220607             f554b07f2f0d   11 hours ago     72.8MB
+python3-file6             2022060606           e4cbb458fabc   25 hours ago     1.27GB
+python3-file5             2022060605           a9aca1db9f3c   26 hours ago     1.21GB
+python3-file4             2022060604           6a572cff54ff   28 hours ago     1.13GB
+python3-file2             20220606             6aca31d67864   32 hours ago     948MB
+s390x-20220527            s390x-tag-20220527   458f29d9bf0c   12 days ago      938MB
+image_20220526            tag_20200526         7ea4c407b27f   13 days ago      1.33GB
+ubuntu                    latest               d2e4e1f51132   5 weeks ago      77.8MB
+ubuntu20.04lts_20220530   20.04_20220530       53df61775e88   5 weeks ago      72.8MB
+docker/getting-started    latest               cb90f98fd791   8 weeks ago      28.8MB
+python3-file              20220601             1f4a8da6ebdf   3 months ago     912MB
+PS C:\DockerTest\dockerfiletest7> docker run -it --name "ubuntu_python3.6_cont_20220607" dda92371d257 /bin/bash
+root@dc0af1df66ac:/# python -V
+bash: python: command not found
+root@dc0af1df66ac:/# python
+bash: python: command not found
+root@dc0af1df66ac:/# ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@dc0af1df66ac:/# ll
+total 64
+drwxr-xr-x   1 root root 4096 Jun  7 09:47 ./
+drwxr-xr-x   1 root root 4096 Jun  7 09:47 ../
+-rwxr-xr-x   1 root root    0 Jun  7 09:47 .dockerenv*
+lrwxrwxrwx   1 root root    7 May 31 15:43 bin -> usr/bin/
+drwxr-xr-x   2 root root 4096 Apr 15  2020 boot/
+drwxr-xr-x   5 root root  360 Jun  7 09:47 dev/
+drwxr-xr-x   1 root root 4096 Jun  7 09:47 etc/
+drwxr-xr-x   2 root root 4096 Apr 15  2020 home/
+lrwxrwxrwx   1 root root    7 May 31 15:43 lib -> usr/lib/
+lrwxrwxrwx   1 root root    9 May 31 15:43 lib32 -> usr/lib32/
+lrwxrwxrwx   1 root root    9 May 31 15:43 lib64 -> usr/lib64/
+lrwxrwxrwx   1 root root   10 May 31 15:43 libx32 -> usr/libx32/
+drwxr-xr-x   2 root root 4096 May 31 15:43 media/
+drwxr-xr-x   2 root root 4096 May 31 15:43 mnt/
+drwxr-xr-x   2 root root 4096 May 31 15:43 opt/
+dr-xr-xr-x 256 root root    0 Jun  7 09:47 proc/
+drwx------   1 root root 4096 Jun  7 09:40 root/
+drwxr-xr-x   5 root root 4096 May 31 15:46 run/
+lrwxrwxrwx   1 root root    8 May 31 15:43 sbin -> usr/sbin/
+drwxr-xr-x   2 root root 4096 May 31 15:43 srv/
+dr-xr-xr-x  11 root root    0 Jun  7 09:47 sys/
+drwxrwxrwt   1 root root 4096 Jun  7 09:45 tmp/
+drwxr-xr-x   1 root root 4096 May 31 15:43 usr/
+drwxr-xr-x   1 root root 4096 May 31 15:46 var/
+root@dc0af1df66ac:/# cd root
+root@dc0af1df66ac:~# ll
+total 21760
+drwx------  1 root root      4096 Jun  7 09:40 ./
+drwxr-xr-x  1 root root      4096 Jun  7 09:47 ../
+-rw-r--r--  1 root root      3106 Dec  5  2019 .bashrc
+-rw-r--r--  1 root root       161 Dec  5  2019 .profile
+-rw-r--r--  1 root root       169 Jun  7 09:40 .wget-hsts
+drwxr--r-- 18  501 staff     4096 Jun  7 09:45 Python-3.6.0/
+-rw-r--r--  1 root root  22256403 Dec 23  2016 Python-3.6.0.tgz
+root@dc0af1df66ac:~# python
+bash: python: command not found
+root@dc0af1df66ac:~# cd Python-3.6.0
+root@dc0af1df66ac:~/Python-3.6.0# python
+bash: python: command not found
+root@dc0af1df66ac:~/Python-3.6.0# ll
+total 44456
+drwxr--r-- 18  501 staff     4096 Jun  7 09:45 ./
+drwxr--r--  2  501 staff     4096 Dec 23  2016 .github/
+drwxr--r-- 18  501 staff     4096 Dec 23  2016 Doc/
+drwxr--r--  2  501 staff     4096 Dec 23  2016 Include/
+-rw-r--r--  1  501 staff    12767 Dec 23  2016 LICENSE
+drwxr--r-- 34  501 staff     4096 Jun  7 09:43 Lib/
+drwxr--r--  8  501 staff     4096 Dec 23  2016 Mac/
+-rw-r--r--  1 root root     67136 Jun  7 09:41 Makefile
+-rw-r--r--  1 root root     58716 Jun  7 09:41 Makefile.pre
+-rw-r--r--  1  501 staff    58829 Dec 23  2016 Makefile.pre.in
+drwxr--r--  2  501 staff     4096 Jun  7 09:41 Misc/
+drwxr--r-- 13  501 staff     4096 Jun  7 09:43 Modules/
+drwxr--r--  4  501 staff     4096 Jun  7 09:42 Objects/
+drwxr--r--  5  501 staff     4096 Dec 23  2016 PC/
+drwxr--r--  2  501 staff     4096 Dec 23  2016 PCbuild/
+drwxr--r--  2  501 staff     4096 Jun  7 09:42 Parser/
+drwxr--r--  2  501 staff     4096 Jun  7 09:45 Programs/
+drwxr--r--  3  501 staff     4096 Jun  7 09:43 Python/
+-rw-r--r--  1  501 staff     8434 Dec 23  2016 README
+drwxr--r-- 24  501 staff     4096 Dec 23  2016 Tools/
+drwxr-xr-x  5 root root      4096 Jun  7 09:45 build/
+-rwxr-xr-x  1  501 staff    42856 Dec 23  2016 config.guess*
+-rw-r--r--  1 root root    767687 Jun  7 09:41 config.log
+-rwxr-xr-x  1 root root     40881 Jun  7 09:41 config.status*
+-rwxr-xr-x  1  501 staff    35740 Dec 23  2016 config.sub*
+-rwxr-xr-x  1  501 staff   481627 Dec 23  2016 configure*
+-rw-r--r--  1  501 staff   158661 Dec 23  2016 configure.ac
+-rwxr-xr-x  1  501 staff     7122 Dec 23  2016 install-sh*
+-rw-r--r--  1 root root  28354096 Jun  7 09:43 libpython3.6m.a
+-rw-r--r--  1 root root        26 Jun  7 09:43 pybuilddir.txt
+-rw-r--r--  1 root root     43195 Jun  7 09:41 pyconfig.h
+-rw-r--r--  1  501 staff    41250 Dec 23  2016 pyconfig.h.in
+-rwxr-xr-x  1 root root  15040712 Jun  7 09:43 python*
+-rw-r--r--  1 root root      3097 Jun  7 09:45 python-config
+-rw-r--r--  1 root root     62282 Jun  7 09:45 python-gdb.py
+-rw-r--r--  1  501 staff   101041 Dec 23  2016 setup.py
+root@dc0af1df66ac:~/Python-3.6.0# python3.6 -V
+Python 3.6.0
+root@dc0af1df66ac:~/Python-3.6.0# python3.6
+Python 3.6.0 (default, Jun  7 2022, 09:43:39)
+[GCC 9.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> exit()
+root@dc0af1df66ac:~/Python-3.6.0# exit
+exit
+PS C:\DockerTest\dockerfiletest7> docker build -t ubuntu20.04-python3.9.10-:2022060703 .
+invalid argument "ubuntu20.04-python3.9.10-:2022060703" for "-t, --tag" flag: invalid reference format
+See 'docker build --help'.
+PS C:\DockerTest\dockerfiletest7> docker build -t ubuntu20.04-py3.9.10:2022060703 .
+[+] Building 420.8s (9/9) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 613B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:20.04                                                    3.3s
+ => [auth] library/ubuntu:pull token for registry-1.docker.io                                                      0.0s
+ => [1/5] FROM docker.io/library/ubuntu:20.04@sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4f010180  0.0s
+ => CACHED [2/5] RUN apt-get update -y && apt-get install -yq wget build-essential gcc zlib1g-dev                  0.0s
+ => CACHED [3/5] WORKDIR /root/                                                                                    0.0s
+ => [4/5] RUN wget https://www.python.org/ftp/python/3.9.10/Python-3.9.10.tgz         && tar zxf Python-3.9.10.  399.9s
+ => exporting to image                                                                                            17.0s
+ => => exporting layers                                                                                           16.9s
+ => => writing image sha256:e6e9e41e79bb06ae5e11a01437cc7c9360b4be7f020d0a6336f9cd0ebc647f58                       0.0s
+ => => naming to docker.io/library/ubuntu20.04-py3.9.10:2022060703                                                 0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+PS C:\DockerTest\dockerfiletest7> docker images
+REPOSITORY                TAG                  IMAGE ID       CREATED          SIZE
+ubuntu20.04-py3.9.10      2022060703           e6e9e41e79bb   3 minutes ago    904MB
+ubuntu20.04-python3.6     2022060702           dda92371d257   18 minutes ago   793MB
+ubuntu20.04-python3.9     20220607             f554b07f2f0d   12 hours ago     72.8MB
+python3-file6             2022060606           e4cbb458fabc   25 hours ago     1.27GB
+python3-file5             2022060605           a9aca1db9f3c   26 hours ago     1.21GB
+python3-file4             2022060604           6a572cff54ff   29 hours ago     1.13GB
+python3-file2             20220606             6aca31d67864   32 hours ago     948MB
+s390x-20220527            s390x-tag-20220527   458f29d9bf0c   12 days ago      938MB
+image_20220526            tag_20200526         7ea4c407b27f   13 days ago      1.33GB
+ubuntu                    latest               d2e4e1f51132   5 weeks ago      77.8MB
+ubuntu20.04lts_20220530   20.04_20220530       53df61775e88   5 weeks ago      72.8MB
+docker/getting-started    latest               cb90f98fd791   8 weeks ago      28.8MB
+python3-file              20220601             1f4a8da6ebdf   3 months ago     912MB
+PS C:\DockerTest\dockerfiletest7> docker run -it --name "ubuntu_python3.9_cont_20220607" e6e9e41e79bb /bin/bash
+root@115b4502e6eb:/# python -V
+bash: python: command not found
+root@115b4502e6eb:/# python3.9.10
+bash: python3.9.10: command not found
+root@115b4502e6eb:/# python3.9.
+bash: python3.9.: command not found
+root@115b4502e6eb:/# python3.9
+Python 3.9.10 (main, Jun  7 2022, 09:58:37)
+[GCC 9.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> exit()
+root@115b4502e6eb:/# cat /etc/os-release
+NAME="Ubuntu"
+VERSION="20.04.4 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.4 LTS"
+VERSION_ID="20.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
+root@115b4502e6eb:/#
