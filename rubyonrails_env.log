@@ -1,0 +1,123 @@
+https://qiita.com/ichylinux/items/b691d4861e0adf5872bd
+
+
+
+git
+Owner@Win10-PC MINGW64 ~
+$ git config --global user.name ○○
+Owner@Win10-PC MINGW64 ~
+$ git config --global user.email ○○
+
+Owner@Win10-PC MINGW64 ~
+$ pwd
+/c/Users/Owner
+
+Owner@Win10-PC MINGW64 ~
+$ ssh-keygen
+Generating public/private rsa key pair.
+
+
+Owner@Win10-PC MINGW64 ~
+$ ls .ssh/
+id_rsa  id_rsa.pub
+
+Owner@Win10-PC MINGW64 ~
+$ cat .ssh/id_rsa.pub
+ssh-rsa AAAAB3Nza
+
+Owner@Win10-PC MINGW64 ~
+$ mkdir work
+
+Owner@Win10-PC MINGW64 ~
+$ cd work/
+
+Owner@Win10-PC MINGW64 ~/work
+$ git clone git@github.com:ichylinux/bizquest.git
+
+Owner@Win10-PC MINGW64 ~/work
+$ ls
+bizquest/
+
+Owner@Win10-PC MINGW64 ~/work
+$ cd bizquest/
+
+Owner@Win10-PC MINGW64 ~/work/bizquest (main)
+$ ls
+Dockerfile.app   Rakefile                  db/                 storage/
+Dockerfile.base  app/                      docker-compose.yml  test/
+Dockerfile.test  babel.config.js           lib/                tmp/
+Gemfile          bin/                      log/                vendor/
+Gemfile.lock     buildspec-production.yml  package.json        yarn.lock
+Jenkinsfile      config/                   postcss.config.js
+README.md        config.ru                 public/
+
+Owner@Win10-PC MINGW64 ~/work/bizquest (main)
+$ pwd
+/c/Users/Owner/work/bizquest
+
+
+cmd
+Microsoft Windows [Version 10.0.19044.1826]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Owner>npm --version
+npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead.
+8.11.0
+
+C:\Users\Owner>npm install -g npm@8.15.1
+npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead.
+npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead.
+
+added 1 package, and audited 202 packages in 8s
+
+11 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+C:\Users\Owner>npm install -g yarn
+npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead.
+
+added 1 package, and audited 2 packages in 2s
+
+found 0 vulnerabilities
+npm notice
+npm notice New minor version of npm available! 8.15.1 -> 8.16.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v8.16.0
+npm notice Run npm install -g npm@8.16.0 to update!
+npm notice
+
+C:\Users\Owner>yarn -v
+1.22.19
+
+C:\Users\Owner>yarn install
+yarn install v1.22.19
+info No lockfile found.
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+success Saved lockfile.
+Done in 0.32s.
+
+C:\Users\Owner>
+
+
+vscode
+PS C:\Users\Owner\work\bizquest> docker compose build
+[+] Building 708.2s (16/22)
+
+PS C:\Users\Owner\work\bizquest> docker scan
+Docker Scan relies upon access to Snyk, a third party provider, do you consent to proceed using Snyk? (y/N)
+y
+
+PS C:\Users\Owner\work\bizquest> docker images
+REPOSITORY                  TAG                  IMAGE ID       CREATED              SIZE
+
+PS C:\Users\Owner\work\bizquest> docker ps
+CONTAINER ID   IMAGE                  COMMAND                  CREATED      STATUS         PORTS                    NAMES
+6f256fd0b70c   d113509d350b           "/opt/bitnami/script…"   8 days ago   Up 2 minutes   0.0.0.0:3000->3000/tcp   rails_myapp_1    
+29502ee2de3f   bitnami/mariadb:10.6   "/opt/bitnami/script…"   8 days ago   Up 2 minutes   3306/tcp                 rails_mariadb_1  
+
+
+
