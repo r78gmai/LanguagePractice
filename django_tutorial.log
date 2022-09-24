@@ -6,14 +6,10 @@ https://docs.djangoproject.com/ja/2.2/intro/tutorial01/
 C:\Users\Owner>python
 Python 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
->>> exit
-Use exit() or Ctrl-Z plus Return to exit
 >>> exit()
 
 C:\Users\Owner>python -m django
 C:\Users\Owner\AppData\Local\Programs\Python\Python310\python.exe: No module named django
-
-C:\Users\Owner>python -m django
 
 C:\Users\Owner>pip install Django
 Collecting Django
@@ -35,8 +31,6 @@ Successfully installed Django-4.1.1 asgiref-3.5.2 sqlparse-0.4.3 tzdata-2022.2
 
 C:\Users\Owner>python -m django version
 4.1.1
-
-C:\Users\Owner>python -m django version
 
 C:\Users\Owner>python
 Python 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)] on win32
