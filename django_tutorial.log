@@ -2,6 +2,7 @@
 https://docs.djangoproject.com/ja/2.2/intro/tutorial01/
 
 実行ログ
+◆Python 、django のインストール確認・実行
 
 C:\Users\Owner>python
 Python 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)] on win32
@@ -43,4 +44,44 @@ Type "help", "copyright", "credits" or "license" for more information.
 C:\Users\Owner>python -m django --version
 4.1.1
 
-C:\Users\Owner>
+
+◆プロジェクトを作成
+C:\Users\Owner>django-admin startproject mysite
+
+C:\Users\Owner>cd mysite
+
+C:\Users\Owner\mysite>dir
+ ドライブ C のボリューム ラベルがありません。
+ ボリューム シリアル番号は 68EB-0391 です
+
+ C:\Users\Owner\mysite のディレクトリ
+
+2022/09/24  12:59    <DIR>          .
+2022/09/24  12:59    <DIR>          ..
+2022/09/24  12:59               684 manage.py
+2022/09/24  12:59    <DIR>          mysite
+               1 個のファイル                 684 バイト
+               3 個のディレクトリ  21,810,212,864 バイトの空き領域
+
+C:\Users\Owner\mysite>cd mysite
+
+C:\Users\Owner\mysite\mysite>dir
+ ドライブ C のボリューム ラベルがありません。
+ ボリューム シリアル番号は 68EB-0391 です
+
+ C:\Users\Owner\mysite\mysite のディレクトリ
+
+2022/09/24  12:59    <DIR>          .
+2022/09/24  12:59    <DIR>          ..
+2022/09/24  12:59               405 asgi.py
+2022/09/24  12:59             3,344 settings.py
+2022/09/24  12:59               769 urls.py
+2022/09/24  12:59               405 wsgi.py
+2022/09/24  12:59                 0 __init__.py
+               5 個のファイル               4,923 バイト
+               2 個のディレクトリ  21,810,331,648 バイトの空き領域
+
+C:\Users\Owner\mysite\mysite>
+
+
+◆
